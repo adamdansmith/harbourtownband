@@ -30,140 +30,103 @@
   </header>
 
   <main id="top">
-    <!-- SKY HERO -->
-    <section class="band band--sky">
-      <div class="container hero">
-        <div>
+    <!-- HERO (continuous background, pop graphics) -->
+    <section class="section">
+      <div class="ghost spinnaker" aria-hidden="true"></div>
+
+      <!-- floating doodles -->
+      <span class="doodle" style="left:8%; top:18%;" aria-hidden="true"></span>
+      <span class="doodle two" style="left:14%; top:64%;" aria-hidden="true"></span>
+      <span class="doodle three" style="left:82%; top:24%;" aria-hidden="true"></span>
+      <span class="doodle two" style="left:76%; top:72%;" aria-hidden="true"></span>
+
+      <div class="container hero-grid">
+        <div class="reveal">
           <div class="kicker">southsea originals • seaside soul</div>
           <h1>Harbour Town</h1>
           <p class="lede">
-            A modern, fun landing page: listen to the latest release, then come and see us live.
-            Southsea and the harbour are the thread that runs through everything we do.
+            Modern, exciting, a bit experimental. Hit play on the latest release, then catch us live.
+            Southsea and the harbour are the thread through everything we do.
           </p>
 
           <div class="actions">
             <a class="btn btn--solid" href="#listen">Play the latest release</a>
-            <a class="btn" href="#gigs">Upcoming gigs</a>
-            <a class="btn" href="#contact">Book us</a>
+            <a class="btn btn--sea" href="#gigs">Upcoming gigs</a>
+            <a class="btn btn--sky" href="#contact">Book us</a>
           </div>
 
           <div class="release" id="listen">
             <img src="assets/release-cover.jpg" alt="Latest release cover" />
             <div>
               <b>Latest release: Harbour Town</b>
-              <div class="meta">Update this title + links in the HTML</div>
+              <div class="meta">Update title + links in the HTML</div>
             </div>
-            <div class="actions" style="margin:0;">
-              <a class="btn btn--solid" href="https://harbourtown.bandcamp.com/album/harbour-town" target="_blank" rel="noreferrer">Bandcamp</a>
-              <a class="btn" href="https://www.facebook.com/harbourtownband1" target="_blank" rel="noreferrer">Facebook</a>
-            </div>
+          </div>
+
+          <div class="actions" style="margin-top:12px;">
+            <a class="btn btn--solid" href="https://harbourtown.bandcamp.com/album/harbour-town" target="_blank" rel="noreferrer">Bandcamp</a>
+            <a class="btn btn--sea" href="https://www.facebook.com/harbourtownband1" target="_blank" rel="noreferrer">Facebook</a>
           </div>
         </div>
 
         <div class="hero-photo" aria-label="Hero photo">
           <img src="assets/hero-1.jpg" alt="Harbour Town live" />
-          <div class="label">Southsea band • Portsmouth nights</div>
+          <span class="sticker one">Portsmouth nights</span>
+          <span class="sticker two">Southsea band</span>
+          <span class="burst a" aria-hidden="true"></span>
+          <span class="burst b" aria-hidden="true"></span>
         </div>
       </div>
     </section>
 
-    <!-- wave sky -> sand -->
-    <div class="wave wave--tall" aria-hidden="true">
-      <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
-        <path fill="#bfe9ff" d="M0,0H1440V40C1320,65,1200,90,1080,85C960,80,840,45,720,45C600,45,480,80,360,85C240,90,120,65,0,40Z"></path>
-        <path fill="#ffe7b8" d="M0,120H1440V30C1320,55,1200,85,1080,82C960,79,840,45,720,45C600,45,480,79,360,82C240,85,120,55,0,30Z"></path>
-      </svg>
-    </div>
-
-    <!-- SAND GIGS -->
-    <section class="band band--sand" id="gigs">
+    <!-- GIGS -->
+    <section class="section" id="gigs">
       <div class="container">
-        <h2>Upcoming gigs</h2>
-        <p class="lede">The important bit. Dates first. No fuss.</p>
+        <h2 class="reveal">Upcoming gigs</h2>
+        <p class="lede reveal">Dates first. Make it easy for people who just found you.</p>
 
-        <div class="giglist" data-gigs>
-          <!-- populated by site.js -->
-        </div>
+        <div class="giglist reveal" data-gigs></div>
 
-        <div class="actions">
+        <div class="actions reveal">
           <a class="btn btn--solid" href="https://www.facebook.com/harbourtownband1" target="_blank" rel="noreferrer">Fast updates on Facebook</a>
-          <a class="btn" href="#contact">Bookings</a>
+          <a class="btn btn--sky" href="#contact">Bookings</a>
         </div>
       </div>
     </section>
 
-    <!-- wave sand -> mint -->
-    <div class="wave" aria-hidden="true">
-      <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
-        <path fill="#ffe7b8" d="M0,0H1440V50C1280,90,1120,110,960,100C800,90,640,45,480,45C320,45,160,85,0,55Z"></path>
-        <path fill="#bff2dd" d="M0,120H1440V38C1280,78,1120,105,960,98C800,91,640,48,480,48C320,48,160,80,0,55Z"></path>
-      </svg>
-    </div>
-
-    <!-- MINT PHOTOS -->
-    <section class="band band--mint" id="photos">
+    <!-- PHOTOS -->
+    <section class="section" id="photos">
       <div class="container">
-        <h2>Photos that pop</h2>
-        <p class="lede">Arty collage energy — not a gallery grid. Swap images whenever you like.</p>
+        <h2 class="reveal">Photos that pop</h2>
+        <p class="lede reveal">Cut-out collage energy. Swap images whenever you like.</p>
 
         <div class="collage" aria-label="Photo collage">
-          <div class="pic" data-pop style="--w:44%;--h:290px;--x:0%;--y:30px;--r:-2deg;">
+          <div class="cut one" data-pop style="--w:46%;--h:300px;--x:0%;--y:40px;--r:-2deg;">
             <img src="assets/pop-1.jpg" alt="Harbour Town photo 1">
           </div>
-          <div class="pic" data-pop style="--w:38%;--h:250px;--x:58%;--y:0px;--r:2deg;">
+          <div class="cut two" data-pop style="--w:40%;--h:250px;--x:58%;--y:0px;--r:2deg;">
             <img src="assets/pop-2.jpg" alt="Harbour Town photo 2">
           </div>
-          <div class="pic" data-pop style="--w:36%;--h:240px;--x:18%;--y:330px;--r:1deg;">
+          <div class="cut three" data-pop style="--w:42%;--h:260px;--x:20%;--y:340px;--r:1deg;">
             <img src="assets/pop-3.jpg" alt="Harbour Town photo 3">
           </div>
-          <div class="pic" data-pop style="--w:30%;--h:210px;--x:62%;--y:320px;--r:-1.5deg;">
-            <img src="assets/pop-4.jpg" alt="Harbour Town photo 4">
-          </div>
         </div>
 
-        <div class="actions">
+        <div class="actions reveal">
           <a class="btn btn--solid" href="#listen">Listen</a>
-          <a class="btn" href="#gigs">Gigs</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- wave mint -> foam -->
-    <div class="wave" aria-hidden="true">
-      <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
-        <path fill="#bff2dd" d="M0,0H1440V55C1260,95,1080,115,900,105C720,95,540,55,360,55C180,55,90,75,0,90Z"></path>
-        <path fill="#f6feff" d="M0,120H1440V35C1260,75,1080,103,900,98C720,93,540,55,360,55C180,55,90,70,0,82Z"></path>
-      </svg>
-    </div>
-
-    <!-- FOAM SPINNAKER MOMENT -->
-    <section class="band band--foam">
-      <div class="container">
-        <div class="spinnaker" data-parallax>
-          <img src="assets/spinnaker.jpg" alt="Spinnaker Tower, Portsmouth" data-parallax-img />
-          <div class="copy">
-            <h2>Harbour town, literally</h2>
-            <p class="lede">
-              Spinnaker Tower as the anchor image — bold, local, and unmistakable.
-              This section is intentionally simple: image + words + actions.
-            </p>
-            <div class="actions">
-              <a class="btn btn--solid" href="https://harbourtown.bandcamp.com/album/harbour-town" target="_blank" rel="noreferrer">Bandcamp</a>
-              <a class="btn" href="#contact">Book us</a>
-            </div>
-          </div>
+          <a class="btn btn--sea" href="#gigs">Gigs</a>
         </div>
       </div>
     </section>
 
     <!-- CONTACT -->
-    <section class="band band--foam" id="contact">
+    <section class="section" id="contact">
       <div class="container">
-        <h2>Bookings</h2>
-        <p class="lede">Email for bookings. Facebook for quick messages.</p>
-        <div class="actions">
+        <h2 class="reveal">Bookings</h2>
+        <p class="lede reveal">Email for bookings. Facebook for quick messages.</p>
+        <div class="actions reveal">
           <a class="btn btn--solid" href="mailto:harbourtownuk@gmail.com">harbourtownuk@gmail.com</a>
-          <a class="btn" href="https://www.facebook.com/harbourtownband1" target="_blank" rel="noreferrer">Facebook</a>
+          <a class="btn btn--sea" href="https://www.facebook.com/harbourtownband1" target="_blank" rel="noreferrer">Facebook</a>
         </div>
       </div>
     </section>
@@ -171,9 +134,9 @@
 
   <footer>
     <div class="container footer-inner">
-      <div><strong>Harbour Town</strong><br>Southsea / Portsmouth</div>
+      <div><strong>Harbour Town</strong><br/>Southsea / Portsmouth</div>
       <div>
-        <a href="mailto:harbourtownuk@gmail.com">harbourtownuk@gmail.com</a><br>
+        <a href="mailto:harbourtownuk@gmail.com">harbourtownuk@gmail.com</a><br/>
         <a href="https://www.facebook.com/harbourtownband1" target="_blank" rel="noreferrer">Facebook</a>
       </div>
     </div>
@@ -181,26 +144,13 @@
 
   <script src="assets/site.js"></script>
   <script>
-    // Photo pop-in
+    // Reveal on scroll (headings + blocks)
     const io = new IntersectionObserver((entries) => {
       for (const e of entries) if (e.isIntersecting) e.target.classList.add("is-in");
-    }, { threshold: 0.12 });
+    }, { threshold: 0.15 });
 
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
     document.querySelectorAll("[data-pop]").forEach(el => io.observe(el));
-
-    // Spinnaker parallax (gentle, reliable)
-    const wrap = document.querySelector("[data-parallax]");
-    const img = document.querySelector("[data-parallax-img]");
-    function tick(){
-      if(!wrap || !img) return;
-      const r = wrap.getBoundingClientRect();
-      const vh = window.innerHeight || 800;
-      const t = (vh - r.top) / (vh + r.height);
-      const c = Math.max(0, Math.min(1, t));
-      img.style.transform = `translateY(${(c - 0.5) * 50}px)`;
-    }
-    window.addEventListener("scroll", tick, { passive:true });
-    tick();
   </script>
 </body>
 </html>
