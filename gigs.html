@@ -1,1 +1,81 @@
 
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gigs • Harbour Town</title>
+  <meta name="description" content="Upcoming gigs and live dates for Harbour Town." />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header>
+    <div class="container">
+      <nav class="nav" aria-label="Primary">
+        <a class="brand" href="index.html">
+          <img src="assets/harbour-town-logo.png" alt="Harbour Town logo" />
+          <div>
+            <strong>Harbour Town</strong>
+            <span>Southsea • Portsmouth</span>
+          </div>
+        </a>
+
+        <div class="menu">
+          <a data-nav href="index.html">Home</a>
+          <a data-nav href="gigs.html">Gigs</a>
+          <a data-nav href="music.html">Music</a>
+          <a data-nav href="gallery.html">Gallery</a>
+          <a data-nav href="videos.html">Videos</a>
+          <a data-nav href="about.html">About</a>
+          <a data-nav href="contact.html">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container">
+        <div class="card hero-main">
+          <div class="kicker"><span class="dot" aria-hidden="true"></span> live in southsea and beyond</div>
+          <h1>Gigs</h1>
+          <p class="lede">
+            Come and see us live. We’re always adding dates — for the quickest updates, follow us on Facebook.
+          </p>
+          <div class="actions">
+            <a class="btn primary" href="https://www.facebook.com/harbourtownband1" target="_blank" rel="noreferrer">Facebook updates</a>
+            <a class="btn" href="contact.html">Bookings</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid">
+        <div class="card panel col-12">
+          <h2>Upcoming dates</h2>
+          <div class="list" data-gigs></div>
+          <p style="margin-top:12px;" class="notice">Tip: edit dates in <code>assets/site.js</code> (HT.gigs) and they update everywhere.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <div><strong style="color:rgba(255,255,255,.86)">Harbour Town</strong></div>
+        <div class="notice">© harbourtownuk • Southsea / Portsmouth</div>
+      </div>
+      <div>
+        <div><a href="mailto:harbourtownuk@gmail.com">harbourtownuk@gmail.com</a></div>
+        <div><a href="https://www.facebook.com/harbourtownband1" target="_blank" rel="noreferrer">Facebook</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/site.js"></script>
+</body>
+</html>
