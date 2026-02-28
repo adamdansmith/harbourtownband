@@ -1,9 +1,144 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
-<title>Harbour Town Band</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Harbour Town</title>
+  <meta name="description" content="Harbour Town are a Southsea-based band writing and arranging original music with roots, singer-songwriter and Americana influences." />
+  <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
-<h1>Harbour Town</h1>
-<p>This is a website for Harbour Town Band!</p>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header>
+    <div class="container">
+      <nav class="nav" aria-label="Primary">
+        <a class="brand" href="index.html">
+          <img src="assets/harbour-town-logo.png" alt="Harbour Town logo" />
+          <div>
+            <strong>Harbour Town</strong>
+            <span>Southsea • Portsmouth</span>
+          </div>
+        </a>
+
+        <div class="menu">
+          <a data-nav href="index.html">Home</a>
+          <a data-nav href="gigs.html">Gigs</a>
+          <a data-nav href="music.html">Music</a>
+          <a data-nav href="gallery.html">Gallery</a>
+          <a data-nav href="videos.html">Videos</a>
+          <a data-nav href="about.html">About</a>
+          <a data-nav href="contact.html">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="card hero-main">
+          <div class="kicker"><span class="dot" aria-hidden="true"></span> hearing is believing</div>
+          <h1>Harbour Town</h1>
+          <p class="lede">
+            Formed in 2021 from our sister group Scarlet Town, Harbour Town blends original songwriting with a
+            rich mix of instrumentation and vocals — rooted in British and American influences from the past 60 years.
+          </p>
+          <div class="actions">
+            <a class="btn primary" href="gigs.html">See upcoming gigs</a>
+            <a class="btn" href="music.html">Listen / buy</a>
+            <a class="btn" href="contact.html">Bookings</a>
+          </div>
+
+          <svg class="wave" viewBox="0 0 1200 200" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0,120 C160,160 280,80 420,120 C560,160 680,80 820,120 C960,160 1080,90 1200,120 L1200,220 L0,220 Z"
+                  fill="rgba(42,167,255,.18)"></path>
+            <path d="M0,140 C160,190 300,95 440,140 C580,185 700,95 840,140 C980,185 1100,105 1200,140 L1200,220 L0,220 Z"
+                  fill="rgba(255,216,138,.10)"></path>
+          </svg>
+        </div>
+
+        <aside class="card hero-side" aria-label="Highlights">
+          <div class="mini">
+            <h3>Our next gig</h3>
+            <p><span class="badge"><b id="nextDate">8 March 2026</b> • <span id="nextVenue">Golden Eagle, Southsea</span></span></p>
+            <p style="margin-top:10px;"><a class="btn" href="gigs.html">Full gig list</a></p>
+          </div>
+
+          <div class="mini">
+            <h3>We have an album</h3>
+            <p>Listen online or pick up a digital copy on Bandcamp. We also bring CDs to gigs.</p>
+            <p style="margin-top:10px;">
+              <a class="btn primary" href="https://harbourtown.bandcamp.com/album/harbour-town" target="_blank" rel="noreferrer">Bandcamp</a>
+              <a class="btn" href="https://www.facebook.com/harbourtownband1" target="_blank" rel="noreferrer">Facebook</a>
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid">
+        <div class="card panel col-7">
+          <h2>Southsea at the heart of it</h2>
+          <p>
+            Harbour Town is based in Southsea, Portsmouth — a seaside city with stories in every pub, venue and shoreline.
+            We’ll gladly follow the music wherever it takes us, but the harbour is always home.
+          </p>
+          <p>
+            Want a quick overview? Head to <a href="about.html">about</a> to meet the band, or jump straight to <a href="music.html">music</a> to listen.
+          </p>
+        </div>
+
+        <div class="card panel col-5">
+          <h2>Upcoming gigs</h2>
+          <div class="list" data-gigs></div>
+          <p style="margin-top:12px;"><a class="btn" href="gigs.html">View gigs page</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid">
+        <div class="card panel col-12">
+          <h2>Listen</h2>
+          <p>
+            Embed your Bandcamp player here (or Spotify / YouTube Music if you add them later).
+            For now, this links out to your Bandcamp album page.
+          </p>
+          <div class="embed" style="display:flex;align-items:center;justify-content:center;padding:18px;">
+            <a class="btn primary" href="https://harbourtown.bandcamp.com/album/harbour-town" target="_blank" rel="noreferrer">
+              Open Harbour Town on Bandcamp
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <div><strong style="color:rgba(255,255,255,.86)">Harbour Town</strong></div>
+        <div class="notice">© harbourtownuk • Southsea / Portsmouth</div>
+      </div>
+      <div>
+        <div><a href="mailto:harbourtownuk@gmail.com">harbourtownuk@gmail.com</a></div>
+        <div><a href="https://www.facebook.com/harbourtownband1" target="_blank" rel="noreferrer">Facebook</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/site.js"></script>
+  <script>
+    // Use the same gigs data to populate “next gig” box
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.HT?.gigs?.length) {
+        const next = window.HT.gigs[0];
+        document.getElementById("nextDate").textContent = next.date;
+        document.getElementById("nextVenue").textContent = next.venue;
+      }
+    });
+  </script>
 </body>
+</html>
