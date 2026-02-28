@@ -38,10 +38,8 @@ function renderGigs(selector){
   const gigs = (window.HT?.gigs || []).slice();
   el.innerHTML = gigs.map(g => `
     <div class="gig">
-      <div>
-        <strong>${escapeHtml(g.date)}</strong><br/>
-        <span>${escapeHtml(g.venue)}</span>
-      </div>
+      <strong>${escapeHtml(g.date)}</strong>
+      <span>${escapeHtml(g.venue)}</span>
     </div>
   `).join("");
 }
