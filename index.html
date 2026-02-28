@@ -4,14 +4,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Harbour Town</title>
-  <meta name="description" content="Harbour Town — Southsea-based original music with rich arrangements and seaside roots. Latest release, gigs, photos, and contact." />
+  <meta name="description" content="Harbour Town — Southsea originals. Latest release, upcoming gigs, photos, and bookings." />
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
+  <!-- optional grain overlay (remove if you don't have texture-grain.png) -->
+  <div class="grain" aria-hidden="true"></div>
+
   <header>
     <div class="container">
       <nav class="nav" aria-label="Primary">
-        <a class="brand" href="index.html">
+        <a class="brand" href="#top">
           <img src="assets/harbour-town-logo.png" alt="Harbour Town logo" />
           <div>
             <strong>Harbour Town</strong>
@@ -20,187 +23,192 @@
         </a>
 
         <div class="menu">
-          <a href="index.html" aria-current="page">Home</a>
-          <a href="gigs.html">Gigs</a>
-          <a href="music.html">Music</a>
-          <a href="gallery.html">Gallery</a>
-          <a href="videos.html">Videos</a>
-          <a href="about.html">About</a>
-          <a href="contact.html">Contact</a>
+          <a href="#listen">Listen</a>
+          <a href="#gigs">Gigs</a>
+          <a href="#photos">Photos</a>
+          <a href="#contact">Book us</a>
         </div>
       </nav>
     </div>
   </header>
 
-  <main>
-    <!-- HERO: photo of band + immediate “latest release” + “next gig” -->
-    <section class="hero">
+  <main id="top">
+    <!-- HERO -->
+    <section class="section hero">
       <div class="container">
-        <div class="hero-photo">
-          <img src="assets/hero-band.jpg" alt="Harbour Town performing live" />
+        <div class="hero-stage">
+          <img class="bg" src="assets/hero-1.jpg" alt="Harbour Town live" />
 
-          <div class="hero-inner">
-            <div class="reveal">
+          <div class="hero-content">
+            <div class="hero-copy reveal">
               <div class="kicker"><span class="dot" aria-hidden="true"></span> southsea originals • seaside soul</div>
               <h1>Harbour Town</h1>
-              <p class="lede">
-                A Southsea-based band blending original songwriting with rich arrangements and big harmonies —
-                inspired by British and American music from the last 60 years.
+              <p class="intro">
+                A Southsea-based band blending original songwriting with rich arrangements and big harmonies.
+                This is the landing page: hit play, then come and see us.
               </p>
 
-              <div class="actions">
-                <a class="btn primary" href="music.html">Listen to the latest release</a>
-                <a class="btn sand" href="gigs.html">See upcoming gigs</a>
-                <a class="btn" href="contact.html">Book us</a>
+              <div class="hero-actions">
+                <a class="btn primary" href="#listen">Play the latest release</a>
+                <a class="btn sand" href="#gigs">Next gigs</a>
+                <a class="btn" href="#contact">Bookings</a>
               </div>
             </div>
 
-            <aside class="hero-aside">
-              <div class="card panel reveal">
-                <h3>Latest release</h3>
-                <p><span class="badge"><b>Harbour Town</b> • album</span></p>
-                <p style="margin-top:10px;">
+            <div class="float">
+              <!-- latest release pill -->
+              <div class="pill reveal" id="listen">
+                <img class="mini-cover" src="assets/release-cover.jpg" alt="Latest release cover" />
+                <div>
+                  <b>Latest release</b>
+                  <small>Update title/link in the HTML below</small>
+                </div>
+                <div style="display:flex; gap:10px; flex-wrap:wrap; margin-left:auto;">
                   <a class="btn primary" href="https://harbourtown.bandcamp.com/album/harbour-town" target="_blank" rel="noreferrer">Bandcamp</a>
-                  <a class="btn" href="music.html">Music page</a>
-                </p>
+                </div>
               </div>
 
-              <div class="card panel reveal">
-                <h3>Next gig</h3>
-                <p><span class="badge"><b id="nextDate">8 March 2026</b> • <span id="nextVenue">Golden Eagle, Southsea</span></span></p>
-                <p style="margin-top:10px;"><a class="btn sand" href="gigs.html">Full gig list</a></p>
+              <!-- next gig pill -->
+              <div class="pill reveal">
+                <div>
+                  <b>Next gig</b>
+                  <small><span id="nextDate">8 March 2026</span> • <span id="nextVenue">Golden Eagle, Southsea</span></small>
+                </div>
+                <div style="margin-left:auto;">
+                  <a class="btn sand" href="#gigs">All dates</a>
+                </div>
               </div>
-            </aside>
+            </div>
+          </div>
+
+          <!-- foam divider -->
+          <svg class="foam" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0,40 C120,80 240,10 360,45 C480,80 600,10 720,45 C840,80 960,20 1200,45 L1200,120 L0,120 Z" fill="rgba(169,226,255,.80)"></path>
+            <path d="M0,58 C160,100 280,25 420,58 C560,92 680,20 820,58 C960,92 1080,35 1200,58 L1200,120 L0,120 Z" fill="rgba(255,242,214,.92)"></path>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- GIGS -->
+    <section class="section" id="gigs" style="background: linear-gradient(180deg, rgba(255,242,214,.55), rgba(246,253,255,1));">
+      <svg class="foam top" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,40 C120,80 240,10 360,45 C480,80 600,10 720,45 C840,80 960,20 1200,45 L1200,120 L0,120 Z" fill="rgba(169,226,255,.80)"></path>
+        <path d="M0,58 C160,100 280,25 420,58 C560,92 680,20 820,58 C960,92 1080,35 1200,58 L1200,120 L0,120 Z" fill="rgba(246,253,255,1)"></path>
+      </svg>
+
+      <div class="container gigs">
+        <div class="reveal">
+          <h2>Upcoming gigs</h2>
+          <p class="intro">
+            This should feel immediate: if someone’s just discovered you, they can instantly see where to catch you live.
+          </p>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:16px;">
+            <a class="btn sand" href="https://www.facebook.com/harbourtownband1" target="_blank" rel="noreferrer">Facebook updates</a>
+            <a class="btn" href="#contact">Bookings</a>
           </div>
         </div>
 
-        <!-- fun wave divider -->
-        <svg class="wave-divider" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M0,40 C140,80 240,10 380,45 C520,80 640,10 780,45 C920,80 1040,20 1200,45 L1200,120 L0,120 Z" fill="rgba(155,218,241,.65)"></path>
-          <path d="M0,55 C140,95 260,20 400,55 C540,92 660,20 800,55 C940,90 1060,30 1200,55 L1200,120 L0,120 Z" fill="rgba(255,241,212,.85)"></path>
-        </svg>
+        <div class="giglist reveal" data-gigs></div>
       </div>
     </section>
 
-    <!-- SECTION: gigs + short intro -->
-    <section class="section">
-      <div class="container grid">
-        <div class="card panel col-7 reveal">
-          <h2>From the harbour to the stage</h2>
-          <p>
-            Southsea and the harbour are a big part of our identity — bright days, windy nights, and the kind of venues
-            where everyone ends up singing the chorus by the final song.
-          </p>
-          <p style="margin-top:12px;">
-            <a class="btn" href="about.html">Meet the band</a>
-            <a class="btn sand" href="gallery.html">See photos</a>
+    <!-- PHOTO POPS -->
+    <section class="section" id="photos" style="background: radial-gradient(900px 700px at 20% 0%, rgba(111,211,199,.25), transparent 60%), var(--foam);">
+      <div class="container">
+        <div class="reveal">
+          <h2>Southsea energy</h2>
+          <p class="intro">
+            This is where it gets fun and arty — photos appear like posters being pasted up, rather than a neat grid.
           </p>
         </div>
 
-        <div class="card panel col-5 reveal">
-          <h2>Upcoming gigs</h2>
-          <div class="list" data-gigs></div>
-          <p style="margin-top:12px;"><a class="btn sand" href="gigs.html">All dates</a></p>
+        <div class="pops" aria-label="Photo collage">
+          <div class="pop one" data-pop><img src="assets/pop-1.jpg" alt="Harbour Town photo 1"></div>
+          <div class="pop two" data-pop><img src="assets/pop-2.jpg" alt="Harbour Town photo 2"></div>
+          <div class="pop three" data-pop><img src="assets/pop-3.jpg" alt="Harbour Town photo 3"></div>
+          <div class="pop four" data-pop><img src="assets/pop-4.jpg" alt="Harbour Town photo 4"></div>
+        </div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top: 18px;" class="reveal">
+          <a class="btn primary" href="#listen">Play the release</a>
+          <a class="btn sand" href="#gigs">Catch a gig</a>
         </div>
       </div>
     </section>
 
-    <!-- PARALLAX: Spinnaker Tower “moment” -->
-    <section class="section">
+    <!-- SPINNAKER MOMENT -->
+    <section class="section spinnaker">
       <div class="container">
         <div class="parallax reveal" data-parallax>
           <img src="assets/spinnaker.jpg" alt="Spinnaker Tower, Portsmouth" data-parallax-img />
-          <div class="content">
-            <h2>The Spinnaker in the background</h2>
-            <p>
-              Think of this as your “landing place”: people find you, get the vibe instantly, and the two most important
-              things are right there — what to listen to, and where to see you next.
+          <div class="copy">
+            <h2>Harbour town, literally</h2>
+            <p class="intro">
+              Spinnaker Tower as a recurring visual anchor — it keeps the identity rooted in Portsmouth without feeling like a tourist brochure.
             </p>
-            <p>
-              Want it even more fun? We can add a gentle “boat bob” animation to the buttons and a little seagull doodle
-              that glides in as you scroll.
-            </p>
-            <p style="margin-top:12px;">
-              <a class="btn primary" href="music.html">Listen now</a>
-              <a class="btn sand" href="gigs.html">Catch a gig</a>
-            </p>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top: 16px;">
+              <a class="btn primary" href="https://harbourtown.bandcamp.com/album/harbour-town" target="_blank" rel="noreferrer">Listen on Bandcamp</a>
+              <a class="btn sand" href="#contact">Book us</a>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION: embed / callouts -->
-    <section class="section">
-      <div class="container grid">
-        <div class="card panel col-6 reveal">
-          <h2>Listen</h2>
-          <p>Pop your Bandcamp embed here for instant playback (we can style it to match the site).</p>
-          <p style="margin-top:12px;">
-            <a class="btn primary" href="https://harbourtown.bandcamp.com/album/harbour-town" target="_blank" rel="noreferrer">Open Bandcamp</a>
-          </p>
-        </div>
+    <!-- CONTACT -->
+    <section class="section" id="contact" style="background: linear-gradient(180deg, rgba(246,253,255,1), rgba(169,226,255,.35));">
+      <div class="container reveal">
+        <h2>Bookings & hello</h2>
+        <p class="intro">
+          Email is best for bookings. For fastest updates and gig info, message us on Facebook.
+        </p>
 
-        <div class="card panel col-6 reveal">
-          <h2>Follow</h2>
-          <p>For the quickest gig updates and posts, follow us on Facebook.</p>
-          <p style="margin-top:12px;">
-            <a class="btn sand" href="https://www.facebook.com/harbourtownband1" target="_blank" rel="noreferrer">Facebook</a>
-            <a class="btn" href="contact.html">Bookings</a>
-          </p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top: 16px;">
+          <a class="btn primary" href="mailto:harbourtownuk@gmail.com">harbourtownuk@gmail.com</a>
+          <a class="btn sand" href="https://www.facebook.com/harbourtownband1" target="_blank" rel="noreferrer">Facebook</a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
+  <footer>
     <div class="container footer-inner">
       <div>
-        <div><strong style="color:rgba(18,48,67,.92)">Harbour Town</strong></div>
-        <div>Southsea / Portsmouth</div>
+        <strong style="color:rgba(11,43,51,.92)">Harbour Town</strong><br/>
+        Southsea / Portsmouth
       </div>
       <div>
-        <div><a href="mailto:harbourtownuk@gmail.com">harbourtownuk@gmail.com</a></div>
-        <div><a href="https://www.facebook.com/harbourtownband1" target="_blank" rel="noreferrer">Facebook</a></div>
+        <a href="mailto:harbourtownuk@gmail.com">harbourtownuk@gmail.com</a><br/>
+        <a href="https://www.facebook.com/harbourtownband1" target="_blank" rel="noreferrer">Facebook</a>
       </div>
     </div>
   </footer>
 
   <script src="assets/site.js"></script>
   <script>
-    // Reveal-on-scroll
+    // Smooth-ish reveal
     const io = new IntersectionObserver((entries) => {
-      for (const e of entries) {
-        if (e.isIntersecting) e.target.classList.add("is-in");
-      }
+      for (const e of entries) if (e.isIntersecting) e.target.classList.add("is-in");
     }, { threshold: 0.15 });
 
     document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+    document.querySelectorAll("[data-pop]").forEach(el => io.observe(el));
 
-    // Simple parallax
-    const parallax = document.querySelector("[data-parallax]");
+    // Parallax Spinnaker
+    const wrap = document.querySelector("[data-parallax]");
     const img = document.querySelector("[data-parallax-img]");
-    function onScroll(){
-      if (!parallax || !img) return;
-      const r = parallax.getBoundingClientRect();
+    function parallaxTick(){
+      if(!wrap || !img) return;
+      const r = wrap.getBoundingClientRect();
       const vh = window.innerHeight || 800;
-      const t = (vh - r.top) / (vh + r.height); // 0..1-ish
-      const clamped = Math.max(0, Math.min(1, t));
-      const offset = (clamped - 0.5) * 50; // px
+      const t = (vh - r.top) / (vh + r.height);
+      const c = Math.max(0, Math.min(1, t));
+      const offset = (c - 0.5) * 60;
       img.style.transform = `translateY(${offset}px)`;
     }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-
-    // Next gig box from the same gigs list
-    document.addEventListener("DOMContentLoaded", () => {
-      if (window.HT?.gigs?.length) {
-        const next = window.HT.gigs[0];
-        const d = document.getElementById("nextDate");
-        const v = document.getElementById("nextVenue");
-        if (d) d.textContent = next.date;
-        if (v) v.textContent = next.venue;
-      }
-    });
+    window.addEventListener("scroll", parallaxTick, { passive:true });
+    parallaxTick();
   </script>
 </body>
 </html>
