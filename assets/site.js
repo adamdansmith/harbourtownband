@@ -35,14 +35,12 @@ function renderGigs(selector){
   const el = document.querySelector(selector);
   if(!el) return;
 
-  // Put the “next gig” first (simple: first item in array)
-  const gigs = HT.gigs.slice();
-
+  const gigs = (window.HT?.gigs || []).slice();
   el.innerHTML = gigs.map(g => `
-    <div class="item">
+    <div class="gig">
       <div>
-        <strong>${escapeHtml(g.date)}</strong>
-        <small>${escapeHtml(g.venue)}</small>
+        <strong>${escapeHtml(g.date)}</strong><br/>
+        <span>${escapeHtml(g.venue)}</span>
       </div>
     </div>
   `).join("");
