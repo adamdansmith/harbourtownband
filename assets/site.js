@@ -80,12 +80,12 @@ preloadExistingSlides(slideshowCandidates).then((slides) => {
   buildSlideshow(slides);
 });
 
-/* header reveal */
+/* transparent header -> white header after scroll */
 window.addEventListener("scroll", () => {
   if (window.scrollY > 70) {
-    document.body.classList.add("header-visible");
+    document.body.classList.add("header-solid");
   } else {
-    document.body.classList.remove("header-visible");
+    document.body.classList.remove("header-solid");
   }
 });
 
