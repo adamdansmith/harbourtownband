@@ -4,16 +4,32 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Harbour Town</title>
-  <meta name="description" content="Harbour Town - hearing is believing. New album, upcoming gigs, and contact details.">
+  <meta name="description" content="Harbour Town — hearing is believing. New album, upcoming gigs, and contact details.">
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
   <header class="site-header" id="siteHeader">
-    <div class="container header-inner">
-      <a href="/" class="site-brand" aria-label="Harbour Town home">
+    <div class="container header-top">
+      <a href="/" class="brand" aria-label="Harbour Town home">
         <img src="assets/logo.png" alt="Harbour Town logo">
       </a>
 
+      <div class="header-centre" id="headerCentreTitle" aria-hidden="true">
+        Harbour Town
+      </div>
+
+      <div class="header-right">
+        <a class="header-contact" href="mailto:harbourtownuk@gmail.com">Contact</a>
+
+        <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="container header-bottom">
       <nav class="desktop-nav" aria-label="Main navigation">
         <a href="/">Home</a>
         <a href="/gigs.html">Gigs</a>
@@ -23,18 +39,15 @@
         <a href="/about.html">About</a>
         <a href="/contact.html">Contact</a>
       </nav>
-
-      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
     </div>
   </header>
 
   <aside class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <div class="mobile-menu-inner">
-      <button class="menu-close" id="menuClose" aria-label="Close menu">×</button>
+      <div class="mobile-menu-top">
+        <div class="mobile-menu-title">Menu</div>
+        <button class="menu-close" id="menuClose" aria-label="Close menu">×</button>
+      </div>
 
       <nav class="mobile-nav" aria-label="Mobile navigation">
         <a href="/">Home</a>
@@ -46,7 +59,7 @@
         <a href="/contact.html">Contact</a>
       </nav>
 
-      <div class="mobile-meta">
+      <div class="mobile-socials">
         <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">Instagram</a>
         <a href="https://www.facebook.com/harbourtownband1" target="_blank" rel="noreferrer">Facebook</a>
         <a href="mailto:harbourtownuk@gmail.com">harbourtownuk@gmail.com</a>
@@ -58,9 +71,22 @@
 
   <main>
     <section class="hero" id="hero">
-      <div class="container hero-inner">
+      <div class="hero-bg">
+        <img src="assets/hero-background.jpg" alt="Harbour Town collage background">
+      </div>
+
+      <div class="hero-graphics" aria-hidden="true">
+        <svg class="hero-line hero-line-1" viewBox="0 0 400 120">
+          <path d="M5 70 C 90 10, 190 110, 395 40" />
+        </svg>
+        <svg class="hero-line hero-line-2" viewBox="0 0 400 120">
+          <path d="M5 45 C 120 110, 210 5, 395 78" />
+        </svg>
+      </div>
+
+      <div class="container hero-content">
         <div class="hero-copy">
-          <p class="eyebrow">Hearing is believing</p>
+          <p class="hero-kicker">Hearing is believing</p>
           <h1 class="hero-title" id="heroTitle">Harbour Town</h1>
           <p class="hero-sub">
             Original music from Southsea with warmth, character, and rich arrangements.
@@ -71,97 +97,85 @@
             <a class="button button-secondary" href="#gigs">See the next gig</a>
           </div>
         </div>
-
-        <div class="hero-collage" aria-label="Harbour Town photo collage">
-          <figure class="collage-item collage-item-1">
-            <img src="assets/hero-collage-1.jpg" alt="Placeholder band photo 1">
-          </figure>
-          <figure class="collage-item collage-item-2">
-            <img src="assets/hero-collage-2.jpg" alt="Placeholder band photo 2">
-          </figure>
-          <figure class="collage-item collage-item-3">
-            <img src="assets/hero-collage-3.jpg" alt="Placeholder band photo 3">
-          </figure>
-          <figure class="collage-item collage-item-4">
-            <img src="assets/hero-collage-4.jpg" alt="Placeholder band photo 4">
-          </figure>
-        </div>
       </div>
     </section>
 
     <section class="release-section section" id="release">
-      <div class="container release-grid">
-        <div class="release-copy reveal">
-          <p class="section-label">New release</p>
-          <h2>We have a new release</h2>
-          <p>
-            Listen to our new album <strong>South Parade</strong>.
-          </p>
-          <p>
-            This is one of the most important things on the site, so it stays clear and central with a strong call to action.
-          </p>
+      <div class="container release-intro">
+        <p class="section-kicker">New release</p>
+        <h2 class="sticky-release-title" id="stickyReleaseTitle">Listen to our new album</h2>
+      </div>
 
-          <div class="release-actions">
-            <a class="button button-primary" href="https://harbourtown.bandcamp.com/album/south-parade" target="_blank" rel="noreferrer">
-              View album on Bandcamp
-            </a>
-          </div>
-
-          <div class="audio-note">
-            Add your preferred player here later if you want a custom audio preview button.
-          </div>
-        </div>
-
-        <div class="release-visual reveal">
-          <div class="record-wrap" id="recordWrap">
+      <div class="container release-stage">
+        <div class="release-visual" id="recordWrap">
+          <div class="album-stack">
             <div class="album-sleeve">
-              <img src="assets/south-parade-cover.jpg" alt="South Parade album artwork placeholder">
+              <img src="assets/south-parade-cover.jpg" alt="South Parade album artwork">
             </div>
             <div class="cd-disc"></div>
           </div>
         </div>
-      </div>
 
-      <div class="container bandcamp-embed-wrap reveal">
-        <iframe
-          class="bandcamp-embed"
-          style="border: 0; width: 100%; max-width: 350px; height: 786px;"
-          src="https://bandcamp.com/EmbeddedPlayer/album=2732938385/size=large/bgcol=ffffff/linkcol=0687f5/transparent=true/"
-          seamless>
-          <a href="https://harbourtown.bandcamp.com/album/south-parade">South Parade by Harbour Town</a>
-        </iframe>
+        <div class="release-copy reveal">
+          <p>
+            <strong>South Parade</strong> is out now.
+          </p>
+          <p>
+            Make this a focal point of the page: the artwork appears first, then the disc slides out as the user scrolls.
+          </p>
+
+          <div class="release-actions">
+            <a class="button button-primary button-large" href="https://harbourtown.bandcamp.com/album/south-parade" target="_blank" rel="noreferrer">
+              Buy / listen on Bandcamp
+            </a>
+          </div>
+
+          <div class="bandcamp-minimal reveal">
+            <iframe
+              style="border: 0; width: 350px; height: 350px;"
+              src="https://bandcamp.com/EmbeddedPlayer/album=2732938385/size=large/bgcol=ffffff/linkcol=0687f5/minimal=true/transparent=true/"
+              seamless>
+              <a href="https://harbourtown.bandcamp.com/album/south-parade">South Parade by Harbour Town</a>
+            </iframe>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="gigs-section section" id="gigs">
-      <div class="container gigs-grid">
+      <div class="container gigs-layout">
         <div class="gigs-copy reveal">
-          <p class="section-label">Upcoming gig</p>
+          <p class="section-kicker">Upcoming gig</p>
           <h2>Come to our gigs</h2>
-          <p class="gig-highlight">
-            <span class="gig-time">7pm</span>
-            <span class="gig-date">24th December</span>
-            <span class="gig-venue">The Barley Mow, Southsea</span>
-          </p>
+
+          <div class="gig-feature">
+            <div class="gig-meta-top">Next date</div>
+            <div class="gig-main-line">
+              <span>7pm</span>
+              <span>24th December</span>
+            </div>
+            <div class="gig-venue">The Barley Mow, Southsea</div>
+          </div>
+
           <p>
-            We’re always playing and would love to see you there.
+            Keep the next gig obvious and easy to spot for people who have just discovered the band.
           </p>
-          <a class="text-link" href="/gigs.html">View all gigs</a>
+
+          <a class="inline-link" href="/gigs.html">View all gigs</a>
         </div>
 
-        <div class="gigs-image reveal">
-          <img src="assets/gig-feature.jpg" alt="Placeholder live performance photo">
+        <div class="gigs-visual reveal">
+          <img src="assets/gig-feature.jpg" alt="Live performance photo placeholder">
         </div>
       </div>
     </section>
 
     <section class="contact-section section" id="contact">
-      <div class="container contact-block reveal">
-        <p class="section-label">Bookings</p>
+      <div class="container contact-panel reveal">
+        <p class="section-kicker">Bookings</p>
         <h2>Get in touch if you like what you hear and want the band to perform</h2>
-        <p>
-          We love performing.
-        </p>
+        <p>We love performing.</p>
+
         <div class="contact-actions">
           <a class="button button-primary" href="mailto:harbourtownuk@gmail.com">Email the band</a>
           <a class="button button-secondary" href="https://www.facebook.com/harbourtownband1" target="_blank" rel="noreferrer">Facebook</a>
@@ -169,24 +183,19 @@
       </div>
     </section>
 
-    <section class="about-teaser section">
-      <div class="container about-grid">
-        <div class="about-images reveal">
-          <figure class="about-image about-image-large">
-            <img src="assets/about-1.jpg" alt="Placeholder Southsea photo">
-          </figure>
-          <figure class="about-image about-image-small">
-            <img src="assets/about-2.jpg" alt="Placeholder band photo">
-          </figure>
+    <section class="about-section section">
+      <div class="container about-layout">
+        <div class="about-visual reveal">
+          <img src="assets/about-feature.jpg" alt="Band or Southsea lifestyle image placeholder">
         </div>
 
         <div class="about-copy reveal">
-          <p class="section-label">About the band</p>
+          <p class="section-kicker">About the band</p>
           <h2>Meet Harbour Town</h2>
           <p>
-            Find out more about the band, the players, and the story behind the music.
+            Add a strong band image or a Southsea scene here. This section should feel like a natural continuation, not a separate block.
           </p>
-          <a class="button button-secondary" href="/about.html">Go to about page</a>
+          <a class="button button-secondary" href="/about.html">Go to the about page</a>
         </div>
       </div>
     </section>
