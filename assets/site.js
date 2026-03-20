@@ -69,7 +69,7 @@ function buildSlideshow(slides) {
   if (slideEls.length <= 1) return;
 
   let activeIndex = 0;
-  setInterval(() => {
+  window.setInterval(() => {
     slideEls[activeIndex].classList.remove("is-active");
     activeIndex = (activeIndex + 1) % slideEls.length;
     slideEls[activeIndex].classList.add("is-active");
@@ -80,7 +80,7 @@ preloadExistingSlides(slideshowCandidates).then((slides) => {
   buildSlideshow(slides);
 });
 
-/* header/title behaviour */
+/* header + hero dock */
 window.addEventListener("scroll", () => {
   const y = window.scrollY;
 
@@ -97,7 +97,7 @@ window.addEventListener("scroll", () => {
   }
 });
 
-/* reveal animation */
+/* reveal animations */
 const revealElements = document.querySelectorAll(".reveal");
 
 const revealObserver = new IntersectionObserver(
