@@ -29,7 +29,7 @@ document.querySelectorAll(".mobile-nav a").forEach((link) => {
   link.addEventListener("click", closeMenu);
 });
 
-/* slideshow: checks jpg/JPG/jpeg/JPEG */
+/* slideshow supports jpg/JPG/jpeg/JPEG */
 const slideshowCandidates = [];
 for (let i = 1; i <= 10; i += 1) {
   slideshowCandidates.push(`assets/slideshow_${i}.jpg`);
@@ -80,24 +80,16 @@ preloadExistingSlides(slideshowCandidates).then((slides) => {
   buildSlideshow(slides);
 });
 
-/* header + dock */
+/* header reveal */
 window.addEventListener("scroll", () => {
-  const y = window.scrollY;
-
-  if (y > 70) {
+  if (window.scrollY > 70) {
     document.body.classList.add("header-visible");
   } else {
     document.body.classList.remove("header-visible");
   }
-
-  if (y > 120) {
-    document.body.classList.add("hero-docked");
-  } else {
-    document.body.classList.remove("hero-docked");
-  }
 });
 
-/* reveal */
+/* reveal animations */
 const revealElements = document.querySelectorAll(".reveal");
 
 const revealObserver = new IntersectionObserver(
