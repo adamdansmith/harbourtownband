@@ -5,21 +5,24 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Harbour Town</title>
   <meta name="description" content="Harbour Town — hearing is believing. New album, upcoming gigs, and contact details.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
   <header class="site-header" id="siteHeader">
     <div class="container header-top">
-      <a href="/" class="brand" aria-label="Harbour Town home">
+      <a href="/" class="header-logo" aria-label="Harbour Town home">
         <img src="assets/logo.png" alt="Harbour Town logo">
       </a>
 
-      <div class="header-centre" id="headerCentreTitle" aria-hidden="true">
-        Harbour Town
-      </div>
+      <div class="header-title" id="headerTitle">Harbour Town</div>
 
-      <div class="header-right">
-        <a class="header-contact" href="mailto:harbourtownuk@gmail.com">Contact</a>
+      <div class="header-actions">
+        <a href="mailto:harbourtownuk@gmail.com" class="header-contact">Contact</a>
 
         <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
           <span></span>
@@ -29,7 +32,7 @@
       </div>
     </div>
 
-    <div class="container header-bottom">
+    <div class="container header-nav-row">
       <nav class="desktop-nav" aria-label="Main navigation">
         <a href="/">Home</a>
         <a href="/gigs.html">Gigs</a>
@@ -45,7 +48,7 @@
   <aside class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <div class="mobile-menu-inner">
       <div class="mobile-menu-top">
-        <div class="mobile-menu-title">Menu</div>
+        <div class="mobile-menu-label">Harbour Town</div>
         <button class="menu-close" id="menuClose" aria-label="Close menu">×</button>
       </div>
 
@@ -59,7 +62,7 @@
         <a href="/contact.html">Contact</a>
       </nav>
 
-      <div class="mobile-socials">
+      <div class="mobile-extra">
         <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">Instagram</a>
         <a href="https://www.facebook.com/harbourtownband1" target="_blank" rel="noreferrer">Facebook</a>
         <a href="mailto:harbourtownuk@gmail.com">harbourtownuk@gmail.com</a>
@@ -71,66 +74,82 @@
 
   <main>
     <section class="hero" id="hero">
-      <div class="hero-bg">
-        <img src="assets/hero-background.jpg" alt="Harbour Town collage background">
-      </div>
+      <div class="hero-slideshow" id="heroSlideshow" aria-hidden="true"></div>
+      <div class="hero-overlay"></div>
 
-      <div class="hero-graphics" aria-hidden="true">
-        <svg class="hero-line hero-line-1" viewBox="0 0 400 120">
-          <path d="M5 70 C 90 10, 190 110, 395 40" />
+      <div class="hero-lines" aria-hidden="true">
+        <svg class="hero-line line-a" viewBox="0 0 500 140">
+          <path d="M8 82 C 110 12, 210 128, 492 34"></path>
         </svg>
-        <svg class="hero-line hero-line-2" viewBox="0 0 400 120">
-          <path d="M5 45 C 120 110, 210 5, 395 78" />
+        <svg class="hero-line line-b" viewBox="0 0 500 140">
+          <path d="M8 40 C 136 132, 278 10, 492 90"></path>
+        </svg>
+        <svg class="hero-line line-c" viewBox="0 0 320 120">
+          <path d="M6 94 C 86 6, 178 124, 314 54"></path>
         </svg>
       </div>
 
       <div class="container hero-content">
-        <div class="hero-copy">
+        <div class="hero-centre">
           <p class="hero-kicker">Hearing is believing</p>
           <h1 class="hero-title" id="heroTitle">Harbour Town</h1>
           <p class="hero-sub">
             Original music from Southsea with warmth, character, and rich arrangements.
           </p>
 
-          <div class="hero-actions">
-            <a class="button button-primary" href="#release">Listen to the new album</a>
-            <a class="button button-secondary" href="#gigs">See the next gig</a>
+          <div class="hero-buttons">
+            <a class="cta cta-primary" href="#release">
+              <span>Listen to the new album</span>
+            </a>
+            <a class="cta cta-secondary" href="#gigs">
+              <span>See the next gig</span>
+            </a>
           </div>
+        </div>
+
+        <div class="hero-scroll-note">
+          <span></span>
+          Scroll
         </div>
       </div>
     </section>
 
-    <section class="release-section section" id="release">
+    <section class="release-section" id="release">
       <div class="container release-intro">
         <p class="section-kicker">New release</p>
-        <h2 class="sticky-release-title" id="stickyReleaseTitle">Listen to our new album</h2>
+        <h2 class="release-title-sticky">Listen to our new album</h2>
       </div>
 
       <div class="container release-stage">
-        <div class="release-visual" id="recordWrap">
-          <div class="album-stack">
+        <div class="release-visual reveal" id="recordWrap">
+          <div class="record-scene">
+            <div class="record-lines" aria-hidden="true">
+              <svg viewBox="0 0 500 120">
+                <path d="M8 72 C 110 12, 220 110, 492 28"></path>
+              </svg>
+            </div>
+
             <div class="album-sleeve">
               <img src="assets/south-parade-cover.jpg" alt="South Parade album artwork">
             </div>
+
             <div class="cd-disc"></div>
           </div>
         </div>
 
         <div class="release-copy reveal">
+          <p class="release-lead"><strong>South Parade</strong> is out now.</p>
           <p>
-            <strong>South Parade</strong> is out now.
-          </p>
-          <p>
-            Make this a focal point of the page: the artwork appears first, then the disc slides out as the user scrolls.
+            The artwork appears first, then the disc slides out as you move down the page.
           </p>
 
-          <div class="release-actions">
-            <a class="button button-primary button-large" href="https://harbourtown.bandcamp.com/album/south-parade" target="_blank" rel="noreferrer">
-              Buy / listen on Bandcamp
+          <div class="release-buttons">
+            <a class="cta cta-primary cta-large" href="https://harbourtown.bandcamp.com/album/south-parade" target="_blank" rel="noreferrer">
+              <span>Buy / listen on Bandcamp</span>
             </a>
           </div>
 
-          <div class="bandcamp-minimal reveal">
+          <div class="bandcamp-minimal">
             <iframe
               style="border: 0; width: 350px; height: 350px;"
               src="https://bandcamp.com/EmbeddedPlayer/album=2732938385/size=large/bgcol=ffffff/linkcol=0687f5/minimal=true/transparent=true/"
@@ -142,60 +161,64 @@
       </div>
     </section>
 
-    <section class="gigs-section section" id="gigs">
+    <section class="gigs-section" id="gigs">
       <div class="container gigs-layout">
         <div class="gigs-copy reveal">
           <p class="section-kicker">Upcoming gig</p>
           <h2>Come to our gigs</h2>
 
           <div class="gig-feature">
-            <div class="gig-meta-top">Next date</div>
-            <div class="gig-main-line">
+            <div class="gig-topline">Next date</div>
+            <div class="gig-main">
               <span>7pm</span>
               <span>24th December</span>
             </div>
             <div class="gig-venue">The Barley Mow, Southsea</div>
           </div>
 
-          <p>
-            Keep the next gig obvious and easy to spot for people who have just discovered the band.
-          </p>
+          <p>Keep the next date obvious for people who have just discovered the band.</p>
 
           <a class="inline-link" href="/gigs.html">View all gigs</a>
         </div>
 
-        <div class="gigs-visual reveal">
+        <div class="gigs-image reveal">
           <img src="assets/gig-feature.jpg" alt="Live performance photo placeholder">
         </div>
       </div>
     </section>
 
-    <section class="contact-section section" id="contact">
+    <section class="contact-section" id="contact">
       <div class="container contact-panel reveal">
         <p class="section-kicker">Bookings</p>
         <h2>Get in touch if you like what you hear and want the band to perform</h2>
         <p>We love performing.</p>
 
-        <div class="contact-actions">
-          <a class="button button-primary" href="mailto:harbourtownuk@gmail.com">Email the band</a>
-          <a class="button button-secondary" href="https://www.facebook.com/harbourtownband1" target="_blank" rel="noreferrer">Facebook</a>
+        <div class="contact-buttons">
+          <a class="cta cta-primary" href="mailto:harbourtownuk@gmail.com">
+            <span>Email the band</span>
+          </a>
+          <a class="cta cta-secondary" href="https://www.facebook.com/harbourtownband1" target="_blank" rel="noreferrer">
+            <span>Facebook</span>
+          </a>
         </div>
       </div>
     </section>
 
-    <section class="about-section section">
+    <section class="about-section">
       <div class="container about-layout">
-        <div class="about-visual reveal">
-          <img src="assets/about-feature.jpg" alt="Band or Southsea lifestyle image placeholder">
+        <div class="about-image reveal">
+          <img src="assets/about-feature.jpg" alt="Band or Southsea image placeholder">
         </div>
 
         <div class="about-copy reveal">
           <p class="section-kicker">About the band</p>
           <h2>Meet Harbour Town</h2>
           <p>
-            Add a strong band image or a Southsea scene here. This section should feel like a natural continuation, not a separate block.
+            Add a strong band image or a Southsea lifestyle image here so the page keeps flowing naturally.
           </p>
-          <a class="button button-secondary" href="/about.html">Go to the about page</a>
+          <a class="cta cta-secondary" href="/about.html">
+            <span>Go to the about page</span>
+          </a>
         </div>
       </div>
     </section>
