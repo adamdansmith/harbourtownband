@@ -29,7 +29,7 @@ document.querySelectorAll(".mobile-nav a").forEach((link) => {
   link.addEventListener("click", closeMenu);
 });
 
-/* slideshow loader: checks jpg/JPG/jpeg/JPEG */
+/* slideshow: checks jpg/JPG/jpeg/JPEG */
 const slideshowCandidates = [];
 for (let i = 1; i <= 10; i += 1) {
   slideshowCandidates.push(`assets/slideshow_${i}.jpg`);
@@ -80,7 +80,7 @@ preloadExistingSlides(slideshowCandidates).then((slides) => {
   buildSlideshow(slides);
 });
 
-/* header + hero dock */
+/* header + dock */
 window.addEventListener("scroll", () => {
   const y = window.scrollY;
 
@@ -97,7 +97,7 @@ window.addEventListener("scroll", () => {
   }
 });
 
-/* reveal animations */
+/* reveal */
 const revealElements = document.querySelectorAll(".reveal");
 
 const revealObserver = new IntersectionObserver(
@@ -108,14 +108,12 @@ const revealObserver = new IntersectionObserver(
       }
     });
   },
-  {
-    threshold: 0.16,
-  }
+  { threshold: 0.16 }
 );
 
 revealElements.forEach((element) => revealObserver.observe(element));
 
-/* record animation */
+/* album animation */
 if (recordWrap) {
   const scene = recordWrap.querySelector(".record-scene");
 
@@ -127,9 +125,7 @@ if (recordWrap) {
         }
       });
     },
-    {
-      threshold: 0.35,
-    }
+    { threshold: 0.35 }
   );
 
   recordObserver.observe(recordWrap);
