@@ -2,8 +2,8 @@ const menuToggle = document.getElementById("menuToggle");
 const menuClose = document.getElementById("menuClose");
 const mobileMenu = document.getElementById("mobileMenu");
 const menuOverlay = document.getElementById("menuOverlay");
-const recordWrap = document.getElementById("recordWrap");
 const heroSlideshow = document.getElementById("heroSlideshow");
+const recordWrap = document.getElementById("recordWrap");
 
 function openMenu() {
   mobileMenu.classList.add("open");
@@ -29,15 +29,14 @@ document.querySelectorAll(".mobile-nav a").forEach((link) => {
   link.addEventListener("click", closeMenu);
 });
 
-/* hero slideshow: looks for slideshow_1.jpg ... slideshow_10.jpg */
-const slideshowImages = [];
+/* slideshow loader: checks jpg/JPG/jpeg/JPEG */
+const slideshowCandidates = [];
 for (let i = 1; i <= 10; i += 1) {
-  slideshowImages.push(`assets/slideshow_${i}.jpg`);
+  slideshowCandidates.push(`assets/slideshow_${i}.jpg`);
+  slideshowCandidates.push(`assets/slideshow_${i}.JPG`);
+  slideshowCandidates.push(`assets/slideshow_${i}.jpeg`);
+  slideshowCandidates.push(`assets/slideshow_${i}.JPEG`);
 }
-
-let validSlides = [];
-let activeSlideIndex = 0;
-let slideshowInterval = null;
 
 function preloadExistingSlides(paths) {
   return Promise.all(
@@ -49,56 +48,56 @@ function preloadExistingSlides(paths) {
         img.src = src;
       });
     })
-  ).then((results) => results.filter(Boolean));
+  ).then((results) => {
+    const existing = results.filter(Boolean);
+    return [...new Set(existing)];
+  });
 }
 
 function buildSlideshow(slides) {
   if (!heroSlideshow || !slides.length) return;
 
   heroSlideshow.innerHTML = slides
-    .map((src, index) => {
-      return `
-        <div class="hero-slide ${index === 0 ? "is-active" : ""}">
-          <img src="${src}" alt="">
-        </div>
-      `;
-    })
+    .map((src, index) => `
+      <div class="hero-slide ${index === 0 ? "is-active" : ""}">
+        <img src="${src}" alt="">
+      </div>
+    `)
     .join("");
 
   const slideEls = heroSlideshow.querySelectorAll(".hero-slide");
+  if (slideEls.length <= 1) return;
 
-  if (slides.length <= 1) return;
-
-  slideshowInterval = setInterval(() => {
-    slideEls[activeSlideIndex].classList.remove("is-active");
-    activeSlideIndex = (activeSlideIndex + 1) % slideEls.length;
-    slideEls[activeSlideIndex].classList.add("is-active");
+  let activeIndex = 0;
+  setInterval(() => {
+    slideEls[activeIndex].classList.remove("is-active");
+    activeIndex = (activeIndex + 1) % slideEls.length;
+    slideEls[activeIndex].classList.add("is-active");
   }, 4200);
 }
 
-preloadExistingSlides(slideshowImages).then((slides) => {
-  validSlides = slides;
-  buildSlideshow(validSlides);
+preloadExistingSlides(slideshowCandidates).then((slides) => {
+  buildSlideshow(slides);
 });
 
-/* header + title dock on scroll */
+/* header/title behaviour */
 window.addEventListener("scroll", () => {
-  const scrollY = window.scrollY;
+  const y = window.scrollY;
 
-  if (scrollY > 70) {
+  if (y > 70) {
     document.body.classList.add("header-visible");
   } else {
     document.body.classList.remove("header-visible");
   }
 
-  if (scrollY > 120) {
+  if (y > 120) {
     document.body.classList.add("hero-docked");
   } else {
     document.body.classList.remove("hero-docked");
   }
 });
 
-/* reveal animations */
+/* reveal animation */
 const revealElements = document.querySelectorAll(".reveal");
 
 const revealObserver = new IntersectionObserver(
@@ -110,7 +109,7 @@ const revealObserver = new IntersectionObserver(
     });
   },
   {
-    threshold: 0.18,
+    threshold: 0.16,
   }
 );
 
