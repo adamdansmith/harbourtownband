@@ -4,13 +4,17 @@ const mobileMenu = document.getElementById("mobileMenu");
 const menuOverlay = document.getElementById("menuOverlay");
 const heroSlideshow = document.getElementById("heroSlideshow");
 const recordWrap = document.getElementById("recordWrap");
+const routeEls = document.querySelectorAll(".route");
+const magneticButtons = document.querySelectorAll(".button");
+
+/* mobile menu */
 
 function openMenu() {
   mobileMenu.classList.add("open");
   mobileMenu.setAttribute("aria-hidden", "false");
   menuOverlay.classList.add("active");
   menuToggle.setAttribute("aria-expanded", "true");
-  document.body.style.overflow = "hidden";
+  document.body.classList.add("menu-open");
 }
 
 function closeMenu() {
@@ -18,7 +22,7 @@ function closeMenu() {
   mobileMenu.setAttribute("aria-hidden", "true");
   menuOverlay.classList.remove("active");
   menuToggle.setAttribute("aria-expanded", "false");
-  document.body.style.overflow = "";
+  document.body.classList.remove("menu-open");
 }
 
 if (menuToggle) menuToggle.addEventListener("click", openMenu);
@@ -30,6 +34,7 @@ document.querySelectorAll(".mobile-nav a").forEach((link) => {
 });
 
 /* slideshow supports jpg/JPG/jpeg/JPEG */
+
 const slideshowCandidates = [];
 for (let i = 1; i <= 10; i += 1) {
   slideshowCandidates.push(`assets/slideshow_${i}.jpg`);
@@ -81,6 +86,7 @@ preloadExistingSlides(slideshowCandidates).then((slides) => {
 });
 
 /* transparent header -> white header after scroll */
+
 window.addEventListener("scroll", () => {
   if (window.scrollY > 70) {
     document.body.classList.add("header-solid");
@@ -90,6 +96,7 @@ window.addEventListener("scroll", () => {
 });
 
 /* reveal animations */
+
 const revealElements = document.querySelectorAll(".reveal");
 
 const revealObserver = new IntersectionObserver(
@@ -105,7 +112,23 @@ const revealObserver = new IntersectionObserver(
 
 revealElements.forEach((element) => revealObserver.observe(element));
 
+/* route animations */
+
+const routeObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+      }
+    });
+  },
+  { threshold: 0.3 }
+);
+
+routeEls.forEach((route) => routeObserver.observe(route));
+
 /* album animation */
+
 if (recordWrap) {
   const scene = recordWrap.querySelector(".record-scene");
 
@@ -122,3 +145,50 @@ if (recordWrap) {
 
   recordObserver.observe(recordWrap);
 }
+
+/* fun button interaction */
+
+magneticButtons.forEach((button) => {
+  button.addEventListener("mousemove", (event) => {
+    const rect = button.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    const moveX = (x - rect.width / 2) * 0.08;
+    const moveY = (y - rect.height / 2) * 0.12;
+
+    button.style.transform = `translate(${moveX}px, ${moveY}px)`;
+  });
+
+  button.addEventListener("mouseleave", () => {
+    button.style.transform = "";
+  });
+});
+
+/* subtle hero parallax */
+
+const hero = document.querySelector(".hero");
+const heroTitle = document.querySelector(".hero-title");
+const heroCopy = document.querySelector(".hero-copy");
+
+window.addEventListener(
+  "scroll",
+  () => {
+    if (!hero || !heroTitle || !heroCopy) return;
+
+    const scrollY = window.scrollY;
+    const heroHeight = hero.offsetHeight;
+
+    if (scrollY <= heroHeight) {
+      const titleShift = scrollY * 0.08;
+      const copyShift = scrollY * 0.04;
+
+      heroTitle.style.transform = `translateY(${titleShift}px)`;
+      heroCopy.style.transform = `translateY(${copyShift}px)`;
+    } else {
+      heroTitle.style.transform = "";
+      heroCopy.style.transform = "";
+    }
+  },
+  { passive: true }
+);
