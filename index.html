@@ -8,20 +8,30 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
   <header class="site-header" id="siteHeader">
-    <div class="container header-top">
+    <div class="container header-row">
       <a href="/" class="header-logo" aria-label="Harbour Town home">
         <img src="assets/logo.png" alt="Harbour Town logo">
       </a>
 
       <div class="header-title" id="headerTitle">Harbour Town</div>
 
-      <div class="header-actions">
+      <div class="header-right">
+        <nav class="desktop-nav" aria-label="Main navigation">
+          <a href="/">Home</a>
+          <a href="/gigs.html">Gigs</a>
+          <a href="/music.html">Music</a>
+          <a href="/gallery.html">Gallery</a>
+          <a href="/videos.html">Videos</a>
+          <a href="/about.html">About</a>
+          <a href="/contact.html">Contact</a>
+        </nav>
+
         <a href="mailto:harbourtownuk@gmail.com" class="header-contact">Contact</a>
 
         <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
@@ -31,24 +41,12 @@
         </button>
       </div>
     </div>
-
-    <div class="container header-nav-row">
-      <nav class="desktop-nav" aria-label="Main navigation">
-        <a href="/">Home</a>
-        <a href="/gigs.html">Gigs</a>
-        <a href="/music.html">Music</a>
-        <a href="/gallery.html">Gallery</a>
-        <a href="/videos.html">Videos</a>
-        <a href="/about.html">About</a>
-        <a href="/contact.html">Contact</a>
-      </nav>
-    </div>
   </header>
 
   <aside class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <div class="mobile-menu-inner">
       <div class="mobile-menu-top">
-        <div class="mobile-menu-label">Harbour Town</div>
+        <div class="mobile-menu-brand">Harbour Town</div>
         <button class="menu-close" id="menuClose" aria-label="Close menu">×</button>
       </div>
 
@@ -62,7 +60,7 @@
         <a href="/contact.html">Contact</a>
       </nav>
 
-      <div class="mobile-extra">
+      <div class="mobile-meta">
         <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">Instagram</a>
         <a href="https://www.facebook.com/harbourtownband1" target="_blank" rel="noreferrer">Facebook</a>
         <a href="mailto:harbourtownuk@gmail.com">harbourtownuk@gmail.com</a>
@@ -77,62 +75,52 @@
       <div class="hero-slideshow" id="heroSlideshow" aria-hidden="true"></div>
       <div class="hero-overlay"></div>
 
-      <div class="hero-lines" aria-hidden="true">
-        <svg class="hero-line line-a" viewBox="0 0 500 140">
-          <path d="M8 82 C 110 12, 210 128, 492 34"></path>
-        </svg>
-        <svg class="hero-line line-b" viewBox="0 0 500 140">
-          <path d="M8 40 C 136 132, 278 10, 492 90"></path>
-        </svg>
-        <svg class="hero-line line-c" viewBox="0 0 320 120">
-          <path d="M6 94 C 86 6, 178 124, 314 54"></path>
-        </svg>
+      <div class="hero-guide" aria-hidden="true">
+        <span class="guide-dot guide-dot-top"></span>
+        <span class="guide-line"></span>
+        <span class="guide-dot guide-dot-mid"></span>
+        <span class="guide-dot guide-dot-bottom"></span>
       </div>
 
       <div class="container hero-content">
-        <div class="hero-centre">
+        <div class="hero-copy">
           <p class="hero-kicker">Hearing is believing</p>
           <h1 class="hero-title" id="heroTitle">Harbour Town</h1>
           <p class="hero-sub">
             Original music from Southsea with warmth, character, and rich arrangements.
           </p>
 
-          <div class="hero-buttons">
-            <a class="cta cta-primary" href="#release">
-              <span>Listen to the new album</span>
-            </a>
-            <a class="cta cta-secondary" href="#gigs">
-              <span>See the next gig</span>
-            </a>
+          <div class="hero-actions">
+            <a class="cta cta-primary" href="#release"><span>Listen to the new album</span></a>
+            <a class="cta cta-secondary" href="#gigs"><span>See the next gig</span></a>
           </div>
         </div>
 
-        <div class="hero-scroll-note">
-          <span></span>
-          Scroll
+        <div class="hero-scroll">
+          <span class="hero-scroll-line"></span>
+          <span class="hero-scroll-text">Scroll</span>
         </div>
       </div>
     </section>
 
     <section class="release-section" id="release">
-      <div class="container release-intro">
-        <p class="section-kicker">New release</p>
-        <h2 class="release-title-sticky">Listen to our new album</h2>
+      <div class="section-guide" aria-hidden="true">
+        <span class="section-guide-line"></span>
+        <span class="section-guide-dot"></span>
       </div>
 
-      <div class="container release-stage">
+      <div class="container release-intro">
+        <p class="section-kicker">New release</p>
+        <h2 class="section-title">Listen to our new album</h2>
+      </div>
+
+      <div class="container release-layout">
         <div class="release-visual reveal" id="recordWrap">
           <div class="record-scene">
-            <div class="record-lines" aria-hidden="true">
-              <svg viewBox="0 0 500 120">
-                <path d="M8 72 C 110 12, 220 110, 492 28"></path>
-              </svg>
-            </div>
-
+            <div class="record-accent"></div>
             <div class="album-sleeve">
               <img src="assets/south-parade-cover.jpg" alt="South Parade album artwork">
             </div>
-
             <div class="cd-disc"></div>
           </div>
         </div>
@@ -140,16 +128,16 @@
         <div class="release-copy reveal">
           <p class="release-lead"><strong>South Parade</strong> is out now.</p>
           <p>
-            The artwork appears first, then the disc slides out as you move down the page.
+            The artwork appears first, then the disc slides out as you scroll into the section.
           </p>
 
-          <div class="release-buttons">
+          <div class="release-actions">
             <a class="cta cta-primary cta-large" href="https://harbourtown.bandcamp.com/album/south-parade" target="_blank" rel="noreferrer">
               <span>Buy / listen on Bandcamp</span>
             </a>
           </div>
 
-          <div class="bandcamp-minimal">
+          <div class="bandcamp-embed">
             <iframe
               style="border: 0; width: 350px; height: 350px;"
               src="https://bandcamp.com/EmbeddedPlayer/album=2732938385/size=large/bgcol=ffffff/linkcol=0687f5/minimal=true/transparent=true/"
@@ -162,13 +150,18 @@
     </section>
 
     <section class="gigs-section" id="gigs">
+      <div class="section-guide" aria-hidden="true">
+        <span class="section-guide-line"></span>
+        <span class="section-guide-dot"></span>
+      </div>
+
       <div class="container gigs-layout">
         <div class="gigs-copy reveal">
           <p class="section-kicker">Upcoming gig</p>
-          <h2>Come to our gigs</h2>
+          <h2 class="section-title">Come to our gigs</h2>
 
-          <div class="gig-feature">
-            <div class="gig-topline">Next date</div>
+          <div class="gig-card">
+            <div class="gig-label">Next date</div>
             <div class="gig-main">
               <span>7pm</span>
               <span>24th December</span>
@@ -176,49 +169,56 @@
             <div class="gig-venue">The Barley Mow, Southsea</div>
           </div>
 
-          <p>Keep the next date obvious for people who have just discovered the band.</p>
+          <p>
+            Keep the next date obvious for people who have just found the band.
+          </p>
 
           <a class="inline-link" href="/gigs.html">View all gigs</a>
         </div>
 
         <div class="gigs-image reveal">
-          <img src="assets/gig-feature.jpg" alt="Live performance photo placeholder">
+          <img src="assets/gig-feature.jpg" alt="Live performance photo">
         </div>
       </div>
     </section>
 
     <section class="contact-section" id="contact">
+      <div class="section-guide" aria-hidden="true">
+        <span class="section-guide-line"></span>
+        <span class="section-guide-dot"></span>
+      </div>
+
       <div class="container contact-panel reveal">
         <p class="section-kicker">Bookings</p>
-        <h2>Get in touch if you like what you hear and want the band to perform</h2>
+        <h2 class="section-title">Get in touch if you like what you hear and want the band to perform</h2>
         <p>We love performing.</p>
 
-        <div class="contact-buttons">
-          <a class="cta cta-primary" href="mailto:harbourtownuk@gmail.com">
-            <span>Email the band</span>
-          </a>
-          <a class="cta cta-secondary" href="https://www.facebook.com/harbourtownband1" target="_blank" rel="noreferrer">
-            <span>Facebook</span>
-          </a>
+        <div class="contact-actions">
+          <a class="cta cta-primary" href="mailto:harbourtownuk@gmail.com"><span>Email the band</span></a>
+          <a class="cta cta-secondary cta-dark" href="https://www.facebook.com/harbourtownband1" target="_blank" rel="noreferrer"><span>Facebook</span></a>
         </div>
       </div>
     </section>
 
     <section class="about-section">
+      <div class="section-guide" aria-hidden="true">
+        <span class="section-guide-line"></span>
+        <span class="section-guide-dot"></span>
+      </div>
+
       <div class="container about-layout">
         <div class="about-image reveal">
-          <img src="assets/about-feature.jpg" alt="Band or Southsea image placeholder">
+          <img src="assets/about-feature.jpg" alt="Band or Southsea image">
         </div>
 
         <div class="about-copy reveal">
           <p class="section-kicker">About the band</p>
-          <h2>Meet Harbour Town</h2>
+          <h2 class="section-title">Meet Harbour Town</h2>
           <p>
-            Add a strong band image or a Southsea lifestyle image here so the page keeps flowing naturally.
+            Add a strong band image or a Southsea scene here so the homepage keeps flowing naturally into the about page.
           </p>
-          <a class="cta cta-secondary" href="/about.html">
-            <span>Go to the about page</span>
-          </a>
+
+          <a class="cta cta-secondary cta-outline-dark" href="/about.html"><span>Go to the about page</span></a>
         </div>
       </div>
     </section>
@@ -230,6 +230,7 @@
         <strong>Harbour Town</strong><br>
         Southsea / Portsmouth
       </div>
+
       <div class="footer-links">
         <a href="https://www.facebook.com/harbourtownband1" target="_blank" rel="noreferrer">Facebook</a>
         <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">Instagram</a>
