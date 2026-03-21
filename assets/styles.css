@@ -551,7 +551,15 @@ body.header-solid .hero-slideshow {
   stroke-dashoffset: 0;
 }
 
-/* gigs poster */
+/* GIGS section */
+
+.gigs-section {
+  background: var(--bg-soft);
+}
+
+.gigs-intro {
+  margin-bottom: 26px;
+}
 
 .gigs-poster-wrap {
   display: flex;
@@ -560,26 +568,12 @@ body.header-solid .hero-slideshow {
 
 .gig-poster {
   position: relative;
-  width: min(100%, 1100px);
+  width: min(100%, 980px);
   padding: 34px 34px 28px;
   background: var(--deep);
   color: var(--white);
   border-radius: var(--radius-l);
   overflow: hidden;
-}
-
-.gig-poster-top {
-  position: relative;
-  z-index: 2;
-  margin-bottom: 22px;
-}
-
-.gig-poster .section-kicker {
-  color: var(--accent);
-}
-
-.gig-poster .section-title {
-  color: var(--white);
 }
 
 .gig-poster-main {
@@ -644,6 +638,10 @@ body.header-solid .hero-slideshow {
   color: rgba(255, 255, 255, 0.78);
 }
 
+.gig-actions {
+  margin-top: 22px;
+}
+
 .gig-poster-graphic {
   position: absolute;
   left: 0;
@@ -665,6 +663,27 @@ body.header-solid .hero-slideshow {
   stroke-width: 3;
   stroke-linecap: round;
   stroke-dasharray: 1 14;
+}
+
+@media (max-width: 1080px) {
+  .gig-poster-main {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .gig-date-block {
+    width: fit-content;
+  }
+}
+
+@media (max-width: 760px) {
+  .gig-poster {
+    padding: 26px 22px 24px;
+  }
+
+  .gig-venue {
+    font-size: 2rem;
+  }
 }
 
 /* release section */
