@@ -444,6 +444,135 @@ body.header-solid .hero-slideshow {
   background: var(--bg);
 }
 
+.release-feature-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 460px) minmax(320px, 1fr);
+  gap: 48px;
+  align-items: start;
+  margin-top: 20px;
+}
+
+.album-note-card {
+  position: relative;
+  padding: 34px 30px 30px;
+  background: var(--ui-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+  overflow: hidden;
+}
+
+.album-note-graphic {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 140px;
+  opacity: 0.14;
+  pointer-events: none;
+}
+
+.album-note-graphic svg {
+  width: 100%;
+  height: 100%;
+}
+
+.album-note-graphic path {
+  fill: none;
+  stroke: var(--primary);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.album-note-kicker {
+  position: relative;
+  margin: 0 0 12px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.album-note-card h3 {
+  position: relative;
+  margin: 0 0 18px;
+  font-size: 2rem;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--text);
+}
+
+.album-note-card p {
+  position: relative;
+  margin: 0 0 16px;
+  font-size: 1rem;
+  line-height: 1.72;
+  color: var(--text-soft);
+}
+
+.album-note-highlight {
+  position: relative;
+  display: inline-block;
+  margin: 6px 0 18px;
+  padding: 10px 14px;
+  background: var(--bg);
+  border: 1px solid rgba(255, 107, 53, 0.22);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.album-note-signoff {
+  margin-top: 10px;
+}
+
+.release-player-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.bandcamp-embed-large {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.bandcamp-embed-large iframe {
+  width: min(100%, 700px) !important;
+  height: 1136px !important;
+}
+
+@media (max-width: 1080px) {
+  .release-feature-grid {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .album-note-card {
+    max-width: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .album-note-card {
+    padding: 26px 22px 22px;
+  }
+
+  .album-note-card h3 {
+    font-size: 1.65rem;
+  }
+
+  .bandcamp-embed-large iframe {
+    height: 900px !important;
+  }
+}
+
+@media (max-width: 680px) {
+  .bandcamp-embed-large iframe {
+    height: 780px !important;
+  }
+}
+
 .gigs-section {
   background: var(--bg-alt);
 }
