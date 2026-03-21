@@ -5,7 +5,7 @@ const menuOverlay = document.getElementById("menuOverlay");
 const heroSlideshow = document.getElementById("heroSlideshow");
 const recordWrap = document.getElementById("recordWrap");
 const routeEls = document.querySelectorAll(".route");
-const magneticButtons = document.querySelectorAll(".button");
+const buttons = document.querySelectorAll(".button");
 
 /* mobile menu */
 
@@ -85,7 +85,7 @@ preloadExistingSlides(slideshowCandidates).then((slides) => {
   buildSlideshow(slides);
 });
 
-/* transparent header -> white header after scroll */
+/* header reveal */
 
 window.addEventListener("scroll", () => {
   if (window.scrollY > 70) {
@@ -146,16 +146,16 @@ if (recordWrap) {
   recordObserver.observe(recordWrap);
 }
 
-/* fun button interaction */
+/* fun interactive buttons */
 
-magneticButtons.forEach((button) => {
+buttons.forEach((button) => {
   button.addEventListener("mousemove", (event) => {
     const rect = button.getBoundingClientRect();
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
 
-    const moveX = (x - rect.width / 2) * 0.08;
-    const moveY = (y - rect.height / 2) * 0.12;
+    const moveX = (x - rect.width / 2) * 0.05;
+    const moveY = (y - rect.height / 2) * 0.08;
 
     button.style.transform = `translate(${moveX}px, ${moveY}px)`;
   });
@@ -168,26 +168,26 @@ magneticButtons.forEach((button) => {
 /* subtle hero parallax */
 
 const hero = document.querySelector(".hero");
-const heroTitle = document.querySelector(".hero-title");
 const heroCopy = document.querySelector(".hero-copy");
+const heroSlideshowEl = document.querySelector(".hero-slideshow");
 
 window.addEventListener(
   "scroll",
   () => {
-    if (!hero || !heroTitle || !heroCopy) return;
+    if (!hero || !heroCopy || !heroSlideshowEl) return;
 
     const scrollY = window.scrollY;
     const heroHeight = hero.offsetHeight;
 
     if (scrollY <= heroHeight) {
-      const titleShift = scrollY * 0.08;
       const copyShift = scrollY * 0.04;
+      const bgShift = scrollY * 0.02;
 
-      heroTitle.style.transform = `translateY(${titleShift}px)`;
       heroCopy.style.transform = `translateY(${copyShift}px)`;
+      heroSlideshowEl.style.transform = `translateY(${bgShift}px) scale(1.03)`;
     } else {
-      heroTitle.style.transform = "";
       heroCopy.style.transform = "";
+      heroSlideshowEl.style.transform = "";
     }
   },
   { passive: true }
