@@ -6,6 +6,7 @@ const heroSlideshow = document.getElementById("heroSlideshow");
 const recordWrap = document.getElementById("recordWrap");
 const routeEls = document.querySelectorAll(".route");
 const buttons = document.querySelectorAll(".button");
+const releaseTitle = document.querySelector(".release-title-bounce");
 
 /* mobile menu */
 
@@ -85,7 +86,7 @@ preloadExistingSlides(slideshowCandidates).then((slides) => {
   buildSlideshow(slides);
 });
 
-/* header reveal */
+/* transparent header -> white header after scroll */
 
 window.addEventListener("scroll", () => {
   if (window.scrollY > 70) {
@@ -146,7 +147,24 @@ if (recordWrap) {
   recordObserver.observe(recordWrap);
 }
 
-/* fun interactive buttons */
+/* release title bounce */
+
+if (releaseTitle) {
+  const releaseTitleObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          releaseTitle.classList.add("is-live");
+        }
+      });
+    },
+    { threshold: 0.5 }
+  );
+
+  releaseTitleObserver.observe(releaseTitle);
+}
+
+/* interactive buttons */
 
 buttons.forEach((button) => {
   button.addEventListener("mousemove", (event) => {
