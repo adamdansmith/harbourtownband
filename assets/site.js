@@ -3,7 +3,7 @@ const menuClose = document.getElementById("menuClose");
 const mobileMenu = document.getElementById("mobileMenu");
 const menuOverlay = document.getElementById("menuOverlay");
 const heroSlideshow = document.getElementById("heroSlideshow");
-const flowBands = document.querySelectorAll(".flow-band");
+const flowSections = document.querySelectorAll(".flow-section");
 const buttons = document.querySelectorAll(".button");
 const revealElements = document.querySelectorAll(".reveal");
 const releaseTitle = document.querySelector(".release-title-bounce");
@@ -119,7 +119,7 @@ const revealObserver = new IntersectionObserver(
 
 revealElements.forEach((element) => revealObserver.observe(element));
 
-/* flow bands */
+/* flow section activation */
 
 const flowObserver = new IntersectionObserver(
   (entries) => {
@@ -129,10 +129,10 @@ const flowObserver = new IntersectionObserver(
       }
     });
   },
-  { threshold: 0.35 }
+  { threshold: 0.25 }
 );
 
-flowBands.forEach((band) => flowObserver.observe(band));
+flowSections.forEach((section) => flowObserver.observe(section));
 
 /* release title bounce */
 
