@@ -3,10 +3,8 @@ const menuClose = document.getElementById("menuClose");
 const mobileMenu = document.getElementById("mobileMenu");
 const menuOverlay = document.getElementById("menuOverlay");
 const heroSlideshow = document.getElementById("heroSlideshow");
-const flowSections = document.querySelectorAll(".flow-section");
 const buttons = document.querySelectorAll(".button");
 const revealElements = document.querySelectorAll(".reveal");
-const releaseTitle = document.querySelector(".release-title-bounce");
 
 const hero = document.querySelector(".hero");
 const heroCopy = document.querySelector(".hero-copy");
@@ -118,38 +116,6 @@ const revealObserver = new IntersectionObserver(
 );
 
 revealElements.forEach((element) => revealObserver.observe(element));
-
-/* flow section activation */
-
-const flowObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-      }
-    });
-  },
-  { threshold: 0.25 }
-);
-
-flowSections.forEach((section) => flowObserver.observe(section));
-
-/* release title bounce */
-
-if (releaseTitle) {
-  const releaseTitleObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          releaseTitle.classList.add("is-live");
-        }
-      });
-    },
-    { threshold: 0.5 }
-  );
-
-  releaseTitleObserver.observe(releaseTitle);
-}
 
 /* button magnetic effect */
 
