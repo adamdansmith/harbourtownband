@@ -8,7 +8,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="assets/styles.css">
 </head>
@@ -16,7 +16,7 @@
   <header class="site-header" id="siteHeader">
     <div class="container header-row">
       <a href="/" class="header-logo" aria-label="Harbour Town home">
-        <img src="assets/logo.png" alt="Harbour Town logo">
+        <img src="assets/ht-logo.JPG" alt="Harbour Town logo">
       </a>
 
       <div class="header-title">Harbour Town</div>
@@ -31,8 +31,6 @@
           <a href="/about.html">About</a>
           <a href="/contact.html">Contact</a>
         </nav>
-
-        <a href="mailto:harbourtownuk@gmail.com" class="header-contact">Contact</a>
 
         <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
           <span></span>
@@ -71,9 +69,24 @@
   <div class="menu-overlay" id="menuOverlay"></div>
 
   <main>
+    <!-- HERO -->
     <section class="hero" id="hero">
       <div class="hero-slideshow" id="heroSlideshow" aria-hidden="true"></div>
       <div class="hero-overlay"></div>
+
+      <div class="section-art section-art-hero" aria-hidden="true">
+        <svg class="wave-band wave-band-1" viewBox="0 0 1200 220" preserveAspectRatio="none">
+          <path d="M0 120 C 140 40, 280 190, 430 110 S 760 50, 930 120 S 1080 170, 1200 110"></path>
+        </svg>
+        <svg class="wave-band wave-band-2" viewBox="0 0 1200 220" preserveAspectRatio="none">
+          <path d="M0 100 C 170 150, 260 40, 410 95 S 720 165, 900 95 S 1080 45, 1200 100"></path>
+        </svg>
+        <svg class="stitched-line stitched-line-hero" viewBox="0 0 1200 220" preserveAspectRatio="none">
+          <path d="M0 130 C 160 80, 240 180, 400 120 S 700 60, 910 125 S 1080 150, 1200 110"></path>
+        </svg>
+        <div class="gull gull-a"></div>
+        <div class="gull gull-b"></div>
+      </div>
 
       <div class="container hero-inner">
         <div class="hero-copy">
@@ -84,8 +97,8 @@
           </p>
 
           <div class="hero-actions">
-            <a class="button button-primary" href="#release">Listen to the new album</a>
-            <a class="button button-secondary" href="#gigs">See the next gig</a>
+            <a class="button button-primary" href="#gigs">See the next gig</a>
+            <a class="button button-secondary" href="#release">Listen to the new album</a>
           </div>
         </div>
 
@@ -93,82 +106,115 @@
       </div>
     </section>
 
-   <section class="section gigs-section" id="gigs">
-  <div class="container section-intro centred gigs-intro">
-    <p class="section-kicker">Upcoming gigs</p>
-    <h2 class="section-title">Come and see us live</h2>
-  </div>
+    <!-- ROUTE -->
+    <div class="route route-1" aria-hidden="true">
+      <svg viewBox="0 0 1200 180" preserveAspectRatio="none">
+        <path d="M0 100 C 180 145, 280 30, 430 60 S 710 150, 860 105 S 1040 40, 1200 90"></path>
+      </svg>
+    </div>
 
-  <div class="container gigs-poster-wrap reveal">
-    <div class="gig-poster">
-      <div class="gig-poster-main">
-        <div class="gig-date-block">
-          <span class="gig-date-day">24</span>
-          <span class="gig-date-month">Dec</span>
-        </div>
+    <!-- GIGS -->
+    <section class="section gigs-section" id="gigs">
+      <div class="section-art section-art-gigs" aria-hidden="true">
+        <svg class="wave-band wave-band-3" viewBox="0 0 1200 220" preserveAspectRatio="none">
+          <path d="M0 120 C 110 70, 250 180, 430 120 S 760 55, 920 120 S 1080 150, 1200 105"></path>
+        </svg>
+        <svg class="stitched-line stitched-line-gigs" viewBox="0 0 1200 220" preserveAspectRatio="none">
+          <path d="M0 100 C 120 145, 280 50, 430 105 S 760 150, 900 95 S 1090 60, 1200 115"></path>
+        </svg>
+        <div class="gull gull-c"></div>
+      </div>
 
-        <div class="gig-info-block">
-          <div class="gig-time">7pm</div>
-          <div class="gig-venue">The Barley Mow, Southsea</div>
-          <div class="gig-note">Original music, seaside spirit, and a proper Harbour Town night.</div>
+      <div class="container section-intro centred gigs-intro">
+        <p class="section-kicker">Upcoming gigs</p>
+        <h2 class="section-title">Come and see us live</h2>
+      </div>
 
-          <div class="gig-actions">
-            <a class="button button-primary" href="/gigs.html">View all gigs</a>
+      <div class="container gigs-poster-wrap reveal">
+        <div class="gig-poster">
+          <div class="gig-poster-main">
+            <div class="gig-date-block">
+              <span class="gig-date-day">24</span>
+              <span class="gig-date-month">Dec</span>
+            </div>
+
+            <div class="gig-info-block">
+              <div class="gig-time">7pm</div>
+              <div class="gig-venue">The Barley Mow, Southsea</div>
+              <div class="gig-note">Original music, seaside spirit, and a proper Harbour Town night.</div>
+
+              <div class="gig-actions">
+                <a class="button button-primary" href="/gigs.html">View all gigs</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="gig-poster-graphic" aria-hidden="true">
+            <svg viewBox="0 0 900 220" preserveAspectRatio="none">
+              <path d="M0 170 C 120 120, 220 220, 360 160 S 620 80, 900 150"></path>
+            </svg>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="gig-poster-graphic" aria-hidden="true">
-        <svg viewBox="0 0 900 220" preserveAspectRatio="none">
-          <path d="M0 170 C 120 120, 220 220, 360 160 S 620 80, 900 150"></path>
+    <!-- ROUTE -->
+    <div class="route route-2" aria-hidden="true">
+      <svg viewBox="0 0 1200 180" preserveAspectRatio="none">
+        <path d="M0 70 C 170 30, 300 150, 470 120 S 760 20, 930 70 S 1080 145, 1200 100"></path>
+      </svg>
+    </div>
+
+    <!-- RELEASE -->
+    <section class="section release-section" id="release">
+      <div class="section-art section-art-release" aria-hidden="true">
+        <svg class="wave-band wave-band-4" viewBox="0 0 1200 260" preserveAspectRatio="none">
+          <path d="M0 130 C 170 55, 280 210, 470 130 S 790 55, 980 130 S 1120 170, 1200 115"></path>
         </svg>
+        <svg class="wave-band wave-band-5" viewBox="0 0 1200 260" preserveAspectRatio="none">
+          <path d="M0 160 C 110 210, 280 70, 430 145 S 740 210, 930 150 S 1080 90, 1200 135"></path>
+        </svg>
+        <svg class="stitched-line stitched-line-release" viewBox="0 0 1200 260" preserveAspectRatio="none">
+          <path d="M0 135 C 130 95, 260 170, 420 125 S 720 90, 910 130 S 1080 155, 1200 118"></path>
+        </svg>
+        <div class="gull gull-d"></div>
       </div>
-    </div>
-  </div>
-</section>
 
- <section class="section release-section" id="release">
-  <div class="container section-intro centred release-intro-block">
-    <p class="section-kicker">New release</p>
-    <h2 class="section-title release-title-bounce">Listen to our new album</h2>
+      <div class="container section-intro centred release-intro-block">
+        <p class="section-kicker">New release</p>
+        <h2 class="section-title release-title-bounce">Listen to our new album</h2>
 
-    <div class="release-listening-bars" aria-hidden="true">
-      <span></span><span></span><span></span><span></span><span></span>
-    </div>
+        <div class="release-listening-bars" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
 
-    <div class="release-actions">
-      <a class="button button-primary button-large" href="https://harbourtown.bandcamp.com/album/south-parade" target="_blank" rel="noreferrer">
-        Buy / listen on Bandcamp
-      </a>
-    </div>
-  </div>
+        <div class="release-actions">
+          <a class="button button-primary button-large" href="https://harbourtown.bandcamp.com/album/south-parade" target="_blank" rel="noreferrer">
+            Buy / listen on Bandcamp
+          </a>
+        </div>
+      </div>
 
-  <div class="container release-player-wrap reveal">
-    <div class="release-player-art" aria-hidden="true">
-      <svg class="release-wave release-wave-1" viewBox="0 0 900 220" preserveAspectRatio="none">
-        <path d="M0 110 C 90 70, 160 150, 240 110 S 400 60, 480 110 S 650 160, 720 110 S 830 60, 900 100"></path>
+      <div class="container release-player-wrap reveal">
+        <div class="bandcamp-embed bandcamp-embed-large">
+          <iframe
+            style="border: 0; width: 700px; height: 1136px;"
+            src="https://bandcamp.com/EmbeddedPlayer/album=2732938385/size=large/bgcol=ffffff/linkcol=0687f5/transparent=true/"
+            seamless>
+            <a href="https://harbourtown.bandcamp.com/album/south-parade">South Parade by Harbour Town</a>
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROUTE -->
+    <div class="route route-3" aria-hidden="true">
+      <svg viewBox="0 0 1200 180" preserveAspectRatio="none">
+        <path d="M0 105 C 140 155, 260 25, 430 70 S 720 150, 900 100 S 1070 30, 1200 70"></path>
       </svg>
-
-      <svg class="release-wave release-wave-2" viewBox="0 0 900 220" preserveAspectRatio="none">
-        <path d="M0 120 C 110 160, 190 70, 280 120 S 430 170, 530 120 S 690 70, 790 120 S 860 150, 900 130"></path>
-      </svg>
-
-      <div class="release-corner release-corner-a"></div>
-      <div class="release-corner release-corner-b"></div>
-      <div class="release-corner release-corner-c"></div>
     </div>
 
-    <div class="bandcamp-embed bandcamp-embed-large">
-      <iframe
-        style="border: 0; width: 700px; height: 1136px;"
-        src="https://bandcamp.com/EmbeddedPlayer/album=2732938385/size=large/bgcol=ffffff/linkcol=0687f5/transparent=true/"
-        seamless>
-        <a href="https://harbourtown.bandcamp.com/album/south-parade">South Parade by Harbour Town</a>
-      </iframe>
-    </div>
-  </div>
-</section>
-
+    <!-- CONTACT -->
     <section class="section contact-section" id="contact">
       <div class="container contact-panel reveal">
         <p class="section-kicker">Bookings</p>
@@ -182,7 +228,25 @@
       </div>
     </section>
 
-    <section class="section about-section">
+    <!-- ROUTE -->
+    <div class="route route-4" aria-hidden="true">
+      <svg viewBox="0 0 1200 180" preserveAspectRatio="none">
+        <path d="M0 85 C 180 40, 300 160, 500 120 S 800 25, 980 75 S 1090 125, 1200 90"></path>
+      </svg>
+    </div>
+
+    <!-- ABOUT -->
+    <section class="section about-section" id="about">
+      <div class="section-art section-art-about" aria-hidden="true">
+        <svg class="wave-band wave-band-6" viewBox="0 0 1200 260" preserveAspectRatio="none">
+          <path d="M0 140 C 170 90, 300 210, 470 140 S 780 70, 980 140 S 1120 180, 1200 130"></path>
+        </svg>
+        <svg class="stitched-line stitched-line-about" viewBox="0 0 1200 260" preserveAspectRatio="none">
+          <path d="M0 150 C 140 110, 260 190, 420 145 S 730 100, 910 145 S 1080 180, 1200 138"></path>
+        </svg>
+        <div class="gull gull-e"></div>
+      </div>
+
       <div class="container about-layout">
         <div class="about-image reveal">
           <img src="assets/about-feature.jpg" alt="Band or Southsea image">
