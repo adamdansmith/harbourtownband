@@ -427,19 +427,19 @@ body.header-solid .hero-slideshow {
   transform: scale(1);
 }
 
-/* section basics */
+/* sections */
 
 .section {
   position: relative;
-  padding: 60px 0;
-}
-
-.release-section {
-  background: var(--bg);
+  padding: 64px 0 72px;
 }
 
 .gigs-section {
   background: var(--bg-alt);
+}
+
+.release-section {
+  background: var(--bg);
 }
 
 .contact-section {
@@ -468,7 +468,7 @@ body.header-solid .hero-slideshow {
 }
 
 .section-kicker {
-  margin: 0 0 12px;
+  margin: 0 0 10px;
   font-size: 0.84rem;
   font-weight: 800;
   letter-spacing: 0.16em;
@@ -485,74 +485,114 @@ body.header-solid .hero-slideshow {
   color: var(--text);
 }
 
-/* flowing section connectors */
+/* flow sections */
 
-.flow-band {
+.flow-section {
+  overflow: visible;
+}
+
+.flow-anchor {
   position: relative;
-  height: 180px;
-  background: var(--bg);
-  overflow: hidden;
+  display: inline-block;
+  text-align: center;
+  z-index: 4;
 }
 
-.flow-band-2 {
-  background: var(--bg-alt);
+.centred-anchor {
+  display: inline-block;
+  margin: 0 auto;
 }
 
-.flow-band-3 {
-  background: var(--bg);
+.flow-dot {
+  display: block;
+  width: 18px;
+  height: 18px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 3px solid var(--accent-fresh);
 }
 
 .flow-svg {
+  position: absolute;
+  left: 0;
   width: 100%;
-  height: 100%;
-  display: block;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 1;
 }
 
-.flow-stroke {
+.flow-in {
+  top: -18px;
+  height: 170px;
+}
+
+.flow-out {
+  bottom: -125px;
+  height: 260px;
+}
+
+.flow-svg path {
   fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
-}
-
-.flow-main {
+  stroke-width: 16;
   stroke: var(--primary);
-  stroke-width: 18;
-  opacity: 0.95;
 }
 
-.flow-accent {
-  stroke: var(--accent-fresh);
-  stroke-width: 7;
-  opacity: 0.82;
-  stroke-dasharray: 1 22;
+.flow-svg.flow-in path,
+.flow-svg.flow-out path {
+  filter: none;
 }
 
-.flow-band.is-visible .flow-main {
+.flow-svg::after {
+  content: "";
+}
+
+.flow-svg.flow-in path,
+.flow-svg.flow-out path {
   stroke-dasharray: 2600;
   stroke-dashoffset: 2600;
-  animation: drawFlowMain 1600ms ease forwards;
 }
 
-.flow-band.is-visible .flow-accent {
+.flow-section.is-visible .flow-in path,
+.flow-section.is-visible .flow-out path {
+  animation: drawFlow 1600ms ease forwards;
+}
+
+.flow-band-delay .flow-out path {
+  animation-delay: 180ms;
+}
+
+.flow-gigs-in path {
+  stroke: var(--primary);
+}
+
+.flow-gigs-out path {
+  stroke: var(--accent-fresh);
+  stroke-width: 9;
   stroke-dasharray: 1 22;
-  animation: pulseAccent 2200ms ease forwards;
+  stroke-dashoffset: 0;
 }
 
-@keyframes drawFlowMain {
+.flow-release-in path {
+  stroke: var(--primary);
+}
+
+.flow-release-out path {
+  stroke: var(--accent-fresh);
+  stroke-width: 9;
+  stroke-dasharray: 1 22;
+  stroke-dashoffset: 0;
+}
+
+.flow-contact-in path {
+  stroke: var(--primary);
+}
+
+@keyframes drawFlow {
   to {
     stroke-dashoffset: 0;
-  }
-}
-
-@keyframes pulseAccent {
-  0% {
-    opacity: 0;
-  }
-  30% {
-    opacity: 0.45;
-  }
-  100% {
-    opacity: 0.82;
   }
 }
 
@@ -565,6 +605,8 @@ body.header-solid .hero-slideshow {
 .gigs-poster-wrap {
   display: flex;
   justify-content: center;
+  position: relative;
+  z-index: 3;
 }
 
 .gig-poster {
@@ -643,6 +685,8 @@ body.header-solid .hero-slideshow {
 
 .release-intro-block {
   margin-bottom: 10px;
+  position: relative;
+  z-index: 4;
 }
 
 .release-title-bounce {
@@ -708,6 +752,7 @@ body.header-solid .hero-slideshow {
   display: flex;
   justify-content: center;
   margin-top: 0;
+  z-index: 3;
 }
 
 .bandcamp-embed-large {
@@ -721,7 +766,7 @@ body.header-solid .hero-slideshow {
   height: 1136px !important;
 }
 
-/* about */
+/* about/contact */
 
 .about-layout {
   display: grid;
@@ -748,6 +793,8 @@ body.header-solid .hero-slideshow {
 }
 
 .contact-panel {
+  position: relative;
+  z-index: 3;
   text-align: center;
 }
 
@@ -896,8 +943,9 @@ body.header-solid .hero-slideshow {
 }
 
 @media (max-width: 760px) {
-  .flow-band {
-    height: 120px;
+  .flow-in,
+  .flow-out {
+    display: none;
   }
 
   .gig-poster {
@@ -910,6 +958,12 @@ body.header-solid .hero-slideshow {
 
   .bandcamp-embed-large iframe {
     height: 900px !important;
+  }
+
+  .flow-dot {
+    width: 14px;
+    height: 14px;
+    margin-bottom: 12px;
   }
 }
 
