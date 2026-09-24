@@ -1,8 +1,8 @@
 // DESIGN PREVIEW ONLY. Replace these examples with confirmed gigs before publishing.
 // Keep demo: true on examples so visitors can see they are not real events.
 const gigs = [
-  { date: '2026-11-14', venue: 'The Golden Eagle', place: 'Southsea', demo: true },
-  { date: '2026-12-05', venue: 'The Barley Mow', place: 'Southsea', demo: true }
+ // { date: '2026-11-14', venue: 'The Golden Eagle', place: 'Southsea', demo: true },
+//  { date: '2026-12-05', venue: 'The Barley Mow', place: 'Southsea', demo: true }
 ];
 
 const menuButton = document.querySelector('.menu-button');
