@@ -1,5 +1,5 @@
 const gigs = [
-  { date: '2026-10-18', venue: 'The Golden Eagle', place: 'Southsea', time: 'Around 4pm · time to be confirmed', url: 'https://www.goldeneaglesouthsea.co.uk/', photo: 'assets/gallery/golden-eagle-02.webp' }
+  { date: '2026-10-18', venue: 'The Golden Eagle', place: 'Southsea', time: '4pm', url: 'https://www.goldeneaglesouthsea.co.uk/', photo: 'assets/gallery/golden-eagle-02.webp' }
 ];
 
 const menuButton = document.querySelector('.menu-button');
