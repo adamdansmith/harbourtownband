@@ -34,7 +34,7 @@ if (list && upcoming.length) {
   list.innerHTML = upcoming.map(gig => {
     const date = dateFormat.format(new Date(`${gig.date}T12:00:00Z`));
     const link = gig.url && !gig.demo && safeLink(gig.url);
-    return `<article class="gig-row${gig.demo ? ' is-demo' : ''}"><time datetime="${gig.date}">${date}</time><div><h3>${escapeHTML(gig.venue)}</h3><p>${escapeHTML(gig.place || '')}</p>${gig.demo ? '<span class="demo-tag">Example date · not a real gig</span>' : ''}</div>${link ? `<a href="${escapeHTML(link)}" target="_blank" rel="noopener noreferrer">Details ↗</a>` : ''}</article>`;
+    return `<article class="gig-row${gig.demo ? ' is-demo' : ''}"><time datetime="${gig.date}">${date}</time><div><h3>${escapeHTML(gig.venue)}</h3><p>${escapeHTML(gig.place || '')}</p>${gig.demo ? '<span class="demo-tag">Example date · not a real gig</span>' : ''}</div>${link ? `<a href="${escapeHTML(link)}" target="_blank" rel="noopener noreferrer">Details →</a>` : ''}</article>`;
   }).join('');
 }
 const preview = document.querySelector('[data-gigs-preview]');
@@ -69,3 +69,33 @@ if (slides.length > 1) {
 }
 const year = document.getElementById('year');
 if (year) year.textContent = new Date().getFullYear();
+
+const galleryDialog = document.querySelector('.gallery-dialog');
+const galleryButtons = [...document.querySelectorAll('[data-gallery-open]')];
+if (galleryDialog && galleryButtons.length && typeof galleryDialog.showModal === 'function') {
+  const photo = galleryDialog.querySelector('img');
+  const caption = galleryDialog.querySelector('figcaption');
+  let selected = 0;
+  let opener;
+  const showPhoto = index => {
+    selected = (index + galleryButtons.length) % galleryButtons.length;
+    const source = galleryButtons[selected].querySelector('img');
+    photo.src = source.src;
+    photo.alt = source.alt;
+    caption.textContent = `${source.closest('.gallery-group').querySelector('h2').textContent} · ${selected + 1} / ${galleryButtons.length}`;
+  };
+  galleryButtons.forEach((button, index) => button.addEventListener('click', () => {
+    opener = button;
+    showPhoto(index);
+    galleryDialog.showModal();
+  }));
+  galleryDialog.querySelector('.gallery-close').addEventListener('click', () => galleryDialog.close());
+  galleryDialog.querySelector('.gallery-prev').addEventListener('click', () => showPhoto(selected - 1));
+  galleryDialog.querySelector('.gallery-next').addEventListener('click', () => showPhoto(selected + 1));
+  galleryDialog.addEventListener('keydown', event => {
+    if (event.key === 'ArrowLeft') { event.preventDefault(); showPhoto(selected - 1); }
+    if (event.key === 'ArrowRight') { event.preventDefault(); showPhoto(selected + 1); }
+  });
+  galleryDialog.addEventListener('click', event => { if (event.target === galleryDialog) galleryDialog.close(); });
+  galleryDialog.addEventListener('close', () => opener?.focus());
+}

@@ -14,4 +14,4 @@ Dates must use `YYYY-MM-DD`. The site sorts them and removes past shows from the
 
 ## Content
 
-The album player uses the Harbour Town Bandcamp embed. The videos embed the three YouTube videos from the original site. The site includes the original live photos in this repository, plus images from the band’s original Google Site and South Parade artwork from the band’s Bandcamp page. Add future photos to `assets/` and link them from `gallery.html` with an accurate caption and alt text.
+The album player uses the Harbour Town Bandcamp embed. The videos embed the three YouTube videos from the original site. All 31 photos from the original Google Site gallery are in `assets/gallery/` and displayed in `gallery.html`. The seven original member portraits are in `assets/people/` and used on the About page. The South Parade artwork comes from the band’s Bandcamp page. Add future photos to `assets/` and link them from `gallery.html` with an accurate caption and alt text.
