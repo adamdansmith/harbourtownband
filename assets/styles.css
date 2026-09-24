@@ -26,7 +26,7 @@ body{background:var(--paper)}
 @media(prefers-reduced-motion:reduce){.hero-slide{transition:none}}
 
 /* Inner pages follow the photo led homepage. */
-.subhero{position:relative;isolation:isolate;height:clamp(280px,15vw,450px);overflow:hidden;background:#0b405a;color:#fff}
+.subhero{position:relative;isolation:isolate;height:clamp(400px,20vw,550px);overflow:hidden;background:#0b405a;color:#fff}
 .subhero>img,.subhero>.hero-shade{position:absolute;inset:0;width:100%;height:100%}
 .subhero>img{object-fit:cover;object-position:center 48%}
 .subhero>.hero-shade{background:linear-gradient(90deg,#061c2cc2 0%,#0b405a62 58%,#0b405a20 100%),linear-gradient(0deg,#071c2b81,transparent 52%)}
