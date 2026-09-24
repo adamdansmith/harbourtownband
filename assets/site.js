@@ -1,8 +1,5 @@
-// DESIGN PREVIEW ONLY. Replace these examples with confirmed gigs before publishing.
-// Keep demo: true on examples so visitors can see they are not real events.
 const gigs = [
- // { date: '2026-11-14', venue: 'The Golden Eagle', place: 'Southsea', demo: true },
-//  { date: '2026-12-05', venue: 'The Barley Mow', place: 'Southsea', demo: true }
+  { date: '2026-10-18', venue: 'The Golden Eagle', place: 'Southsea', time: 'Around 4pm · time to be confirmed', url: 'https://www.goldeneaglesouthsea.co.uk/', photo: 'assets/gallery/golden-eagle-02.webp' }
 ];
 
 const menuButton = document.querySelector('.menu-button');
@@ -31,11 +28,17 @@ const escapeHTML = value => String(value).replace(/[&<>"']/g, character => ({ '&
 const safeLink = url => { try { const parsed = new URL(url); return ['http:', 'https:'].includes(parsed.protocol) ? parsed.href : null; } catch { return null; } };
 const list = document.querySelector('[data-gigs-list]');
 if (list && upcoming.length) {
-  list.innerHTML = upcoming.map(gig => {
-    const date = dateFormat.format(new Date(`${gig.date}T12:00:00Z`));
-    const link = gig.url && !gig.demo && safeLink(gig.url);
-    return `<article class="gig-row${gig.demo ? ' is-demo' : ''}"><time datetime="${gig.date}">${date}</time><div><h3>${escapeHTML(gig.venue)}</h3><p>${escapeHTML(gig.place || '')}</p>${gig.demo ? '<span class="demo-tag">Example date · not a real gig</span>' : ''}</div>${link ? `<a href="${escapeHTML(link)}" target="_blank" rel="noopener noreferrer">Details →</a>` : ''}</article>`;
+  list.innerHTML = upcoming.map((gig, index) => {
+    const date = new Date(`${gig.date}T12:00:00Z`);
+    const month = new Intl.DateTimeFormat('en-GB', { month: 'short', timeZone: 'Europe/London' }).format(date);
+    const day = new Intl.DateTimeFormat('en-GB', { weekday: 'long', timeZone: 'Europe/London' }).format(date);
+    const venueLink = gig.url && safeLink(gig.url);
+    return `<article class="gig-poster"><div class="gig-poster-info"><p class="gig-kicker">${index ? 'COMING UP' : 'NEXT UP'} · LIVE IN ${escapeHTML(gig.place || 'PORTSMOUTH').toUpperCase()}</p><div class="gig-poster-date"><time datetime="${gig.date}"><strong>${date.getUTCDate()}</strong><span>${month}<small>${date.getUTCFullYear()}</small></span></time><span class="gig-weekday">${day}</span></div><h2>${escapeHTML(gig.venue)}</h2><p class="gig-place">${escapeHTML(gig.place || 'Portsmouth')}</p>${gig.time ? `<p class="gig-time">${escapeHTML(gig.time)}</p>` : ''}<div class="gig-poster-links">${venueLink ? `<a href="${escapeHTML(venueLink)}" target="_blank" rel="noopener noreferrer">FIND THE VENUE →</a>` : ''}<a href="https://www.facebook.com/harbourtownband1" target="_blank" rel="noopener noreferrer">GIG UPDATES →</a></div></div>${gig.photo ? `<div class="gig-poster-photo"><img src="${escapeHTML(gig.photo)}" alt="Harbour Town performing at ${escapeHTML(gig.venue)}" loading="lazy"></div>` : ''}</article>`;
   }).join('');
+}
+if (list && !upcoming.length) {
+  list.innerHTML = '<p class="no-gigs">New dates will appear here. Follow us on <a href="https://www.facebook.com/harbourtownband1" target="_blank" rel="noopener noreferrer">Facebook</a> for updates.</p>';
+  document.querySelector('.gigs-intro h2').innerHTML = 'More dates<br><em>soon.</em>';
 }
 const preview = document.querySelector('[data-gigs-preview]');
 if (preview) {
@@ -43,8 +46,9 @@ if (preview) {
     const formatted = dateFormat.format(new Date(`${gig.date}T12:00:00Z`));
     const short = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', timeZone: 'Europe/London' }).format(new Date(`${gig.date}T12:00:00Z`));
     const [day, month] = short.split(' ');
-    return `<div class="ribbon-gig"><time datetime="${gig.date}" aria-label="${formatted}">${day}<span>${month}</span></time><div><strong>${escapeHTML(gig.venue)}</strong><small>${escapeHTML(gig.place || '')}${gig.demo ? ' · Example' : ''}</small></div></div>`;
+    return `<div class="ribbon-gig"><time datetime="${gig.date}" aria-label="${formatted}">${day}<span>${month}</span></time><div><strong>${escapeHTML(gig.venue)}</strong><small>${escapeHTML(gig.place || '')}${gig.time ? ' · Around 4pm' : ''}</small></div></div>`;
   }).join('') || '<span class="ribbon-empty">New gigs will appear here.</span>';
+  if (!upcoming.length) document.querySelector('.ribbon-heading small').textContent = 'NEW DATES SOON';
 }
 
 const slides = [...document.querySelectorAll('.hero-slide')];
