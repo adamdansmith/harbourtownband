@@ -100,7 +100,7 @@ if (homeStory) {
     maskBase.setAttribute('width', storyRect.width);
     maskBase.setAttribute('height', storyRect.height);
     maskCuts.replaceChildren();
-    homeStory.querySelectorAll('.cover-art, .full-album, .about-home-grid figure, .watch-home .video-frame, .photo-home-grid').forEach(element => {
+    homeStory.querySelectorAll('.cover-art, .full-album, .about-home-grid figure, .watch-home .video-frame, .photo-home-grid, .home-story h2, .home-story p, .home-story a').forEach(element => {
       const rect = element.getBoundingClientRect();
       const cut = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
       cut.setAttribute('x', rect.left - storyRect.left - 3);
