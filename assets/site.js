@@ -92,17 +92,26 @@ if (homeStory) {
     const storyRect = homeStory.getBoundingClientRect();
     const points = markers.map(marker => {
       const rect = marker.getBoundingClientRect();
-      return { x: rect.left - storyRect.left + rect.width / 2, y: rect.top - storyRect.top + rect.height / 2 };
+      const section = marker.closest('section').getBoundingClientRect();
+      return {
+        x: rect.left - storyRect.left + rect.width / 2,
+        y: rect.top - storyRect.top + rect.height / 2,
+        sectionTop: section.top - storyRect.top,
+        side: rect.left - storyRect.left + rect.width / 2 < storyRect.width / 2 ? 30 : storyRect.width - 30
+      };
     });
     svg.setAttribute('viewBox', `0 0 ${storyRect.width} ${storyRect.height}`);
     if (points.length < 2) return;
     let path = `M ${points[0].x} ${points[0].y}`;
-    for (let i = 1; i < points.length; i++) {
-      const from = points[i - 1];
-      const to = points[i];
-      const middle = (from.y + to.y) / 2;
-      path += ` C ${from.x} ${middle}, ${to.x} ${middle}, ${to.x} ${to.y}`;
-    }
+    points.forEach((point, index) => {
+      path += ` L ${point.side} ${point.y}`;
+      if (index === points.length - 1) return;
+      const next = points[index + 1];
+      const boundary = next.sectionTop;
+      path += ` L ${point.side} ${boundary - 115}`;
+      path += ` C ${point.side} ${boundary - 35}, ${next.side} ${boundary + 35}, ${next.side} ${boundary + 115}`;
+      path += ` L ${next.side} ${next.y} L ${next.x} ${next.y}`;
+    });
     dots.setAttribute('d', path);
     progress.setAttribute('d', path);
     length = progress.getTotalLength();
