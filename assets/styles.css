@@ -190,8 +190,6 @@ body{background:var(--paper)}
 
 /* The homepage's sea blue and print details carry through the inner pages. */
 .hero-stage h1 em{color:#147b9d}
-.hero-actions .button-cream{background:#092f46;color:#fff}
-.hero-actions .button-cream:hover{background:#146986;color:#fff}
 .hero-controls button:hover{background:#147b9d;color:#fff}
 .watch-home{background:#f8fbf8}
 .about-home::after{display:none}
