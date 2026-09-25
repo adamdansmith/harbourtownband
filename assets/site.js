@@ -79,6 +79,22 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
   }, { threshold: .08, rootMargin: '0px 0px -30px 0px' });
   revealTargets.forEach(element => revealObserver.observe(element));
 }
+const homeStory = document.querySelector('.home-story');
+if (homeStory) {
+  let routeFrame = 0;
+  const updateRoute = () => {
+    routeFrame = 0;
+    const bounds = homeStory.getBoundingClientRect();
+    const travelled = Math.max(0, Math.min(bounds.height, window.innerHeight * .55 - bounds.top));
+    homeStory.style.setProperty('--route-progress', `${travelled / bounds.height * 100}%`);
+  };
+  const requestRoute = () => {
+    if (!routeFrame) routeFrame = requestAnimationFrame(updateRoute);
+  };
+  updateRoute();
+  window.addEventListener('scroll', requestRoute, { passive: true });
+  window.addEventListener('resize', requestRoute);
+}
 if (slides.length > 1) {
   let active = 0;
   let timer;
