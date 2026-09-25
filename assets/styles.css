@@ -87,7 +87,7 @@ body{background:var(--paper)}
 .about-home-grid figure::before{content:"";position:absolute;inset:34px -34px -34px 34px;border:9px solid #176b9a;pointer-events:none}.about-home-grid img{position:relative}
 .watch-home{position:relative;overflow:hidden}.watch-home::before,.watch-home::after{display:none}
 .photo-home{position:relative}.photo-home::before,.photo-home::after{display:none}
-/* A South Parade Pier roundel marks each stop on the flowing route. */
+/* The wave meets each title's punctuation rather than a separate badge. */
 .home-story{position:relative;isolation:isolate}
 .home-story>section{position:relative;z-index:auto}
 .home-story>section>.wrap{position:relative;z-index:4}
@@ -96,21 +96,30 @@ body{background:var(--paper)}
 .story-route__dots{stroke:#0b5e7c;opacity:.5}
 .story-route__progress{stroke:#edae57;stroke-width:7}
 .home-story .eyebrow{display:block}
-.story-marker{display:grid;place-items:center;width:90px;height:90px;margin-bottom:22px;border:6px solid #f1c980;border-radius:50%;background:#0b405a;box-shadow:0 0 0 5px #0b5e7c;position:relative;z-index:3}
-.story-marker svg{display:block;width:75%;height:75%;filter:drop-shadow(0 1px 0 #0b405a)}
+.story-stop{display:inline-block;position:relative;vertical-align:baseline;width:.22em;height:.22em;margin-left:.025em;border-radius:50%;background:#0b5e7c;color:transparent;line-height:0;overflow:hidden;transition:background-color .3s,transform .3s}
+.story-stop.is-passed{background:#e7a34f;transform:scale(1.12)}
+.story-stop--bang{width:auto;height:auto;background:none;color:#0b5e7c;line-height:inherit;overflow:visible}
+.story-stop--bang.is-passed{background:none;color:#e7a34f}
+.home-contact .story-stop{background:#f1c980}.home-contact .story-stop.is-passed{background:#76c0d0}
 /* A low tide line softens the background changes without extra title decoration. */
 .record-feature::after,.about-home::after,.watch-home::after,.photo-home::after{display:block;content:"";position:absolute;left:0;right:0;bottom:-1px;height:42px;z-index:1;pointer-events:none;background-size:100% 100%;background-repeat:no-repeat}
 .record-feature::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 42' preserveAspectRatio='none'%3E%3Cpath d='M0 28 C240 0 460 39 720 22 S1190 5 1440 26 V42 H0Z' fill='%23f8fbf8'/%3E%3C/svg%3E")}
 .about-home::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 42' preserveAspectRatio='none'%3E%3Cpath d='M0 24 C260 40 440 2 720 22 S1180 38 1440 14 V42 H0Z' fill='%23dcebee'/%3E%3C/svg%3E")}
 .watch-home::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 42' preserveAspectRatio='none'%3E%3Cpath d='M0 28 C240 0 460 39 720 22 S1190 5 1440 26 V42 H0Z' fill='%23eaf3f3'/%3E%3C/svg%3E")}
 .photo-home::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 42' preserveAspectRatio='none'%3E%3Cpath d='M0 24 C260 40 440 2 720 22 S1180 38 1440 14 V42 H0Z' fill='%230b405a'/%3E%3C/svg%3E")}
-/* The live recording returns to a clean, straight screen. */
-.watch-grid{grid-template-columns:1fr;gap:42px;justify-items:stretch;text-align:left}
-.watch-grid>div:first-child{max-width:650px}
-.watch-grid p:not(.eyebrow){max-width:620px}
-.watch-grid .video-frame{position:relative;margin:auto;width:min(100%,930px);border:0;border-radius:0;box-shadow:16px 16px 0 #0b5e7c;overflow:hidden}
-.watch-grid .video-frame::before{display:none}
+/* A pub-stage video, printed hatch and the record sleeve's vinyl edge. */
+.watch-grid{grid-template-columns:.65fr 1.35fr;gap:8%;align-items:center;text-align:left}
+.watch-grid>div:first-child{max-width:500px}
+.watch-grid p:not(.eyebrow){max-width:430px}
+.watch-grid .video-frame{position:relative;isolation:isolate;margin:0;width:100%;border:0;border-radius:0;box-shadow:12px 12px 0 #0b5e7c;overflow:visible}
+.watch-grid .video-frame::before{display:block;content:"";position:absolute;z-index:-1;inset:25px -29px -29px 29px;background:repeating-linear-gradient(135deg,#357d91 0 3px,transparent 3px 15px);opacity:.55;pointer-events:none}
 .watch-grid .video-frame iframe{display:block;border-radius:0}
+.record-copy .cover-art{isolation:isolate;box-shadow:12px 12px 0 #0b5e7c}
+.record-copy .cover-art img{position:relative;z-index:1}
+.record-copy .cover-art::before{display:block;content:"";position:absolute;z-index:0;left:41%;top:9%;width:82%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at center,#d9edf0 0 8%,#0b405a 8.5% 13%,transparent 13.5%),repeating-radial-gradient(circle at center,#0d3043 0 3px,#16445a 4px 6px,#0d3043 7px 9px);box-shadow:8px 8px 0 #0b5e7c;animation:record-turn 24s linear infinite}
+@keyframes record-turn{to{transform:rotate(360deg)}}
+.about-home::before{animation:tide-drift 18s ease-in-out infinite alternate}
+@keyframes tide-drift{to{transform:rotate(-10deg) translateY(16px)}}
 .photo-home-head{flex-direction:row-reverse}.photo-home-head>div{text-align:right}.photo-home-head .story-marker{margin-left:auto}
 .photo-home-grid a{overflow:hidden}
 .photo-home-grid a:nth-child(2){transform:translateY(22px)}.photo-home-grid a:nth-child(3){transform:translateY(-12px)}
@@ -120,9 +129,9 @@ body{background:var(--paper)}
 .will-reveal{opacity:0;translate:0 25px;transition:opacity .7s ease,translate .7s ease}.will-reveal.is-revealed{opacity:1;translate:0 0}.photo-home-grid a:nth-child(2).will-reveal{transition-delay:.1s}.photo-home-grid a:nth-child(3).will-reveal{transition-delay:.2s}
 @media(max-width:760px){.ribbon-dates{border-top-color:#0d4b6655}.full-hero{height:calc(100svh - var(--top-stack-height, 140px));min-height:470px}.hero-stage{bottom:100px}.hero-stage h1{font-size:clamp(4.8rem,13.8vw,7.5rem)}.record-feature,.about-home{padding-top:85px}.about-home::before{left:-40%;border-width:40px}.about-home-grid figure::before{inset:18px -13px -13px 13px;border-width:6px}.record-copy .cover-art::before{inset:-18px 25px 24px -22px}.record-copy .cover-art::after{left:-35px}.photo-home-grid a:nth-child(2),.photo-home-grid a:nth-child(3){transform:none}}
 @media(max-width:480px){.full-hero{height:calc(100svh - var(--top-stack-height, 135px));min-height:450px}.hero-stage{bottom:100px}.hero-stage h1{font-size:clamp(3.45rem,15vw,5.5rem)}.hero-bottom{bottom:19px}.scroll-cue span:first-child{display:none}.scroll-arrow{width:34px;height:34px}.record-copy .cover-art::after{left:-23px;width:112%}.album-note{margin-bottom:35px}}
-@media(max-width:760px){.story-marker{width:68px;height:68px;border-width:4px;margin-bottom:18px}.watch-grid{gap:35px}.watch-home .video-frame{margin:0;width:calc(100% - 16px);box-shadow:10px 10px 0 #0b5e7c}.photo-home-head{gap:15px}.home-contact{background-position:60% center}}
+@media(max-width:760px){.watch-grid{grid-template-columns:1fr;gap:36px}.watch-home .video-frame{width:calc(100% - 24px);box-shadow:10px 10px 0 #0b5e7c}.watch-home .video-frame::before{inset:16px -18px -18px 18px}.photo-home-head{gap:15px}.home-contact{background-position:60% center}.record-copy .cover-art::before{left:36%;width:76%}}
 @media(max-height:650px){.full-hero{min-height:450px}.hero-stage{bottom:85px}.hero-stage h1{margin-bottom:28px}}
-@media(prefers-reduced-motion:reduce){.will-reveal{opacity:1;translate:none;transition:none}.scroll-arrow{transition:none}}
+@media(prefers-reduced-motion:reduce){.will-reveal{opacity:1;translate:none;transition:none}.scroll-arrow{transition:none}.record-copy .cover-art::before,.about-home::before{animation:none}}
 
 /* Live dates: compact gig poster, with the band's own Golden Eagle photo. */
 .gigs-hero{height:clamp(280px,33vw,420px)}
