@@ -91,6 +91,18 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
   }, { threshold: .2, rootMargin: '0px 0px -25px 0px' });
   storyHeadings.forEach(heading => headingObserver.observe(heading));
 }
+const innerTargets = document.querySelectorAll('.subhero-copy h1, .member-profile, .gallery-group-heading, .gallery-item, .video-item, .music-album-grid > *, .gig-poster, .contact-page-grid > *');
+if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  innerTargets.forEach(element => element.classList.add(element.matches('.subhero-copy h1') ? 'inner-enter' : 'inner-reveal'));
+  const innerObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-in');
+      innerObserver.unobserve(entry.target);
+    });
+  }, { threshold: .06, rootMargin: '0px 0px -20px 0px' });
+  innerTargets.forEach(element => innerObserver.observe(element));
+}
 const homeStory = document.querySelector('.home-story');
 if (homeStory) {
   const svg = homeStory.querySelector('.story-route');
