@@ -85,6 +85,8 @@ if (homeStory) {
   const dots = svg.querySelector('.story-route__dots');
   const progress = svg.querySelector('.story-route__progress');
   const reveal = svg.querySelector('.story-route__reveal');
+  const maskBase = svg.querySelector('.story-route__mask-base');
+  const maskCuts = svg.querySelector('.story-route__mask-cuts');
   const markers = [...homeStory.querySelectorAll('.story-marker')];
   let routeFrame = 0;
   const drawRoute = () => {
@@ -95,6 +97,19 @@ if (homeStory) {
     });
     svg.setAttribute('viewBox', `0 0 ${storyRect.width} ${storyRect.height}`);
     reveal.setAttribute('width', storyRect.width);
+    maskBase.setAttribute('width', storyRect.width);
+    maskBase.setAttribute('height', storyRect.height);
+    maskCuts.replaceChildren();
+    homeStory.querySelectorAll('.cover-art, .full-album, .about-home-grid figure, .watch-home .video-frame, .photo-home-grid').forEach(element => {
+      const rect = element.getBoundingClientRect();
+      const cut = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      cut.setAttribute('x', rect.left - storyRect.left - 3);
+      cut.setAttribute('y', rect.top - storyRect.top - 3);
+      cut.setAttribute('width', rect.width + 6);
+      cut.setAttribute('height', rect.height + 6);
+      cut.setAttribute('fill', 'black');
+      maskCuts.append(cut);
+    });
     if (points.length < 2) return;
     let path = `M ${points[0].x} ${points[0].y}`;
     for (let i = 1; i < points.length; i++) {
