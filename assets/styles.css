@@ -99,10 +99,11 @@ body{background:var(--paper)}
 .story-marker{display:grid;place-items:center;width:90px;height:90px;margin-bottom:22px;border:6px solid #f1c980;border-radius:50%;background:#0b405a;box-shadow:0 0 0 5px #0b5e7c;position:relative;z-index:3}
 .story-marker svg{display:block;width:75%;height:75%;filter:drop-shadow(0 1px 0 #0b405a)}
 /* A low tide line softens the background changes without extra title decoration. */
-.record-feature::after,.about-home::after,.watch-home::after{display:block;content:"";position:absolute;left:0;right:0;bottom:-1px;height:42px;z-index:1;pointer-events:none;background-size:100% 100%;background-repeat:no-repeat}
+.record-feature::after,.about-home::after,.watch-home::after,.photo-home::after{display:block;content:"";position:absolute;left:0;right:0;bottom:-1px;height:42px;z-index:1;pointer-events:none;background-size:100% 100%;background-repeat:no-repeat}
 .record-feature::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 42' preserveAspectRatio='none'%3E%3Cpath d='M0 28 C240 0 460 39 720 22 S1190 5 1440 26 V42 H0Z' fill='%23f8fbf8'/%3E%3C/svg%3E")}
 .about-home::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 42' preserveAspectRatio='none'%3E%3Cpath d='M0 24 C260 40 440 2 720 22 S1180 38 1440 14 V42 H0Z' fill='%23dcebee'/%3E%3C/svg%3E")}
 .watch-home::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 42' preserveAspectRatio='none'%3E%3Cpath d='M0 28 C240 0 460 39 720 22 S1190 5 1440 26 V42 H0Z' fill='%23eaf3f3'/%3E%3C/svg%3E")}
+.photo-home::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 42' preserveAspectRatio='none'%3E%3Cpath d='M0 24 C260 40 440 2 720 22 S1180 38 1440 14 V42 H0Z' fill='%230b405a'/%3E%3C/svg%3E")}
 /* The live recording returns to a clean, straight screen. */
 .watch-grid{grid-template-columns:1fr;gap:42px;justify-items:stretch;text-align:left}
 .watch-grid>div:first-child{max-width:650px}
