@@ -116,10 +116,10 @@ body{background:var(--paper)}
 .watch-grid .video-frame iframe{display:block;border-radius:0}
 .record-copy .cover-art{isolation:isolate;box-shadow:12px 12px 0 #0b5e7c}
 .record-copy .cover-art img{position:relative;z-index:1}
-.record-copy .cover-art::before{display:block;content:"";position:absolute;z-index:0;left:41%;top:9%;width:82%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at center,#d9edf0 0 8%,#0b405a 8.5% 13%,transparent 13.5%),repeating-radial-gradient(circle at center,#0d3043 0 3px,#16445a 4px 6px,#0d3043 7px 9px);box-shadow:8px 8px 0 #0b5e7c;animation:record-turn 24s linear infinite}
+.record-copy .cover-art::before{display:block;content:"";position:absolute;z-index:0;left:41%;top:9%;width:82%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at center,#d9edf0 0 8%,#0b405a 8.5% 13%,transparent 13.5%),repeating-radial-gradient(circle at center,#0d3043 0 3px,#16445a 4px 6px,#0d3043 7px 9px);box-shadow:8px 8px 0 #0b5e7c;animation:record-turn 16s linear infinite}
 @keyframes record-turn{to{transform:rotate(360deg)}}
-.about-home::before{animation:tide-drift 18s ease-in-out infinite alternate}
-@keyframes tide-drift{to{transform:rotate(-10deg) translateY(16px)}}
+.about-home::before{animation:tide-drift 12s ease-in-out infinite alternate}
+@keyframes tide-drift{to{transform:rotate(-4deg) translateY(25px)}}
 .photo-home-head{flex-direction:row-reverse}.photo-home-head>div{text-align:right}.photo-home-head .story-marker{margin-left:auto}
 .photo-home-grid a{overflow:hidden}
 .photo-home-grid a:nth-child(2){transform:translateY(22px)}.photo-home-grid a:nth-child(3){transform:translateY(-12px)}
@@ -166,3 +166,24 @@ body{background:var(--paper)}
 .gigs-after a{font-weight:800;font-size:.72rem;color:#0b405a;letter-spacing:.06em;border-bottom:2px solid currentColor;padding:6px 0;white-space:nowrap}
 @media(max-width:760px){.gigs-hero{height:260px}.gigs-intro{grid-template-columns:1fr;gap:18px}.gig-poster{grid-template-columns:1fr}.gig-poster-info{min-height:340px}.gig-poster-photo{height:240px}.gig-poster-date time strong{font-size:8rem}.gigs-after{align-items:flex-start}}
 @media(max-width:480px){.gigs-hero{height:210px}.gigs-content{padding:42px 0 55px}.gigs-intro{margin-bottom:25px}.gigs-intro h2{font-size:clamp(2.9rem,13vw,4.3rem)}.gig-poster-info{padding:26px;min-height:320px}.gig-poster-date time strong{font-size:7.5rem}.gig-poster-date time>span{font-size:2rem}.gig-weekday{display:none}.gig-poster h2{font-size:2.45rem}.gig-poster-photo{height:195px}.gigs-after{display:block}.gigs-after a{display:inline-block;margin-top:12px}}
+
+/* A little more stage movement, kept to section entrances. */
+.home-story h2.story-enter{opacity:0;translate:0 17px;transition:opacity .65s ease,translate .65s cubic-bezier(.2,.7,.25,1)}
+.home-story h2.story-enter.is-in{opacity:1;translate:0 0}
+@media(max-width:760px){
+  .gig-ribbon .ribbon-inner{display:flex;min-height:48px;align-items:center;gap:9px;padding:7px 0}
+  .gig-ribbon .ribbon-heading{display:block;flex:none;line-height:1;white-space:nowrap}
+  .gig-ribbon .ribbon-heading>span,.gig-ribbon .ribbon-asterisk{display:none}
+  .gig-ribbon .ribbon-heading small{display:block;margin:0;font-size:.65rem;letter-spacing:.055em}
+  .gig-ribbon .ribbon-dates{display:block;flex:1;min-width:0;border:0;overflow:hidden}
+  .gig-ribbon .ribbon-gig{display:flex;align-items:center;gap:6px;min-width:0;padding:0;border:0}
+  .gig-ribbon .ribbon-gig time{display:flex;gap:3px;align-items:baseline;flex:none;font-size:.8rem;letter-spacing:-.025em}
+  .gig-ribbon .ribbon-gig time span{display:inline;margin:0;font-size:.59rem;letter-spacing:0}
+  .gig-ribbon .ribbon-gig>div{min-width:0}
+  .gig-ribbon .ribbon-gig strong{font-size:.72rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .gig-ribbon .ribbon-gig small{display:none}
+  .gig-ribbon .ribbon-all{flex:none;border:0;padding:0;font-size:0}
+  .gig-ribbon .ribbon-all span{font-size:1.1rem}
+}
+@media(max-width:390px){.gig-ribbon .ribbon-inner{gap:6px}.gig-ribbon .ribbon-heading small{font-size:.58rem}.gig-ribbon .ribbon-gig strong{font-size:.66rem}}
+@media(prefers-reduced-motion:reduce){.home-story h2.story-enter{opacity:1;translate:none;transition:none}}
