@@ -87,20 +87,20 @@ if (homeStory) {
   const reveal = svg.querySelector('.story-route__reveal');
   const maskBase = svg.querySelector('.story-route__mask-base');
   const maskCuts = svg.querySelector('.story-route__mask-cuts');
-  const markers = [...homeStory.querySelectorAll('.story-marker')];
+  const stops = [...homeStory.querySelectorAll('.story-stop')];
   let routeFrame = 0;
   const drawRoute = () => {
     const storyRect = homeStory.getBoundingClientRect();
-    const points = markers.map(marker => {
-      const rect = marker.getBoundingClientRect();
-      return { x: rect.left - storyRect.left + rect.width / 2, y: rect.top - storyRect.top + rect.height / 2 };
+    const points = stops.map(stop => {
+      const rect = stop.getBoundingClientRect();
+      return { x: rect.left - storyRect.left + rect.width / 2, y: rect.top - storyRect.top + rect.height * (stop.classList.contains('story-stop--bang') ? .82 : .5) };
     });
     svg.setAttribute('viewBox', `0 0 ${storyRect.width} ${storyRect.height}`);
     reveal.setAttribute('width', storyRect.width);
     maskBase.setAttribute('width', storyRect.width);
     maskBase.setAttribute('height', storyRect.height);
     maskCuts.replaceChildren();
-    homeStory.querySelectorAll('.cover-art, .full-album, .about-home-grid figure, .watch-home .video-frame, .photo-home-grid, .home-story h2, .home-story p, .home-story a').forEach(element => {
+    homeStory.querySelectorAll('.cover-art, .full-album, .about-home-grid figure, .watch-home .video-frame, .photo-home-grid, .home-story p, .home-story a').forEach(element => {
       const rect = element.getBoundingClientRect();
       const cut = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
       cut.setAttribute('x', rect.left - storyRect.left - 3);
@@ -109,6 +109,25 @@ if (homeStory) {
       cut.setAttribute('height', rect.height + 6);
       cut.setAttribute('fill', 'black');
       maskCuts.append(cut);
+    });
+    // Cut the letterforms from the route while leaving each punctuation stop visible.
+    homeStory.querySelectorAll('h2').forEach(heading => {
+      const walker = document.createTreeWalker(heading, NodeFilter.SHOW_TEXT);
+      while (walker.nextNode()) {
+        const node = walker.currentNode;
+        if (!node.textContent.trim() || node.parentElement.closest('.story-stop')) continue;
+        const range = document.createRange();
+        range.selectNodeContents(node);
+        [...range.getClientRects()].forEach(rect => {
+          const cut = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+          cut.setAttribute('x', rect.left - storyRect.left - 2);
+          cut.setAttribute('y', rect.top - storyRect.top - 2);
+          cut.setAttribute('width', rect.width + 4);
+          cut.setAttribute('height', rect.height + 4);
+          cut.setAttribute('fill', 'black');
+          maskCuts.append(cut);
+        });
+      }
     });
     if (points.length < 2) return;
     let path = `M ${points[0].x} ${points[0].y}`;
@@ -128,6 +147,10 @@ if (homeStory) {
     // Reveal at the same document position as the scroll cue, not by path length.
     const visibleY = Math.max(0, Math.min(bounds.height, window.innerHeight * .55 - bounds.top));
     reveal.setAttribute('height', visibleY);
+    stops.forEach(stop => {
+      const rect = stop.getBoundingClientRect();
+      stop.classList.toggle('is-passed', rect.top - bounds.top + rect.height / 2 <= visibleY);
+    });
   };
   const requestRoute = () => {
     if (!routeFrame) routeFrame = requestAnimationFrame(updateRoute);
