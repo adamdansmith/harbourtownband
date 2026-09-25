@@ -81,19 +81,51 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
 }
 const homeStory = document.querySelector('.home-story');
 if (homeStory) {
+  const svg = homeStory.querySelector('.story-route');
+  const dots = svg.querySelector('.story-route__dots');
+  const progress = svg.querySelector('.story-route__progress');
+  const traveller = svg.querySelector('.story-route__traveller');
+  const markers = [...homeStory.querySelectorAll('.story-marker')];
   let routeFrame = 0;
+  let length = 0;
+  const drawRoute = () => {
+    const storyRect = homeStory.getBoundingClientRect();
+    const points = markers.map(marker => {
+      const rect = marker.getBoundingClientRect();
+      return { x: rect.left - storyRect.left + rect.width / 2, y: rect.top - storyRect.top + rect.height / 2 };
+    });
+    svg.setAttribute('viewBox', `0 0 ${storyRect.width} ${storyRect.height}`);
+    if (points.length < 2) return;
+    let path = `M ${points[0].x} ${points[0].y}`;
+    for (let i = 1; i < points.length; i++) {
+      const from = points[i - 1];
+      const to = points[i];
+      const middle = (from.y + to.y) / 2;
+      path += ` C ${from.x} ${middle}, ${to.x} ${middle}, ${to.x} ${to.y}`;
+    }
+    dots.setAttribute('d', path);
+    progress.setAttribute('d', path);
+    length = progress.getTotalLength();
+    updateRoute();
+  };
   const updateRoute = () => {
     routeFrame = 0;
+    if (!length) return;
     const bounds = homeStory.getBoundingClientRect();
-    const travelled = Math.max(0, Math.min(bounds.height, window.innerHeight * .55 - bounds.top));
-    homeStory.style.setProperty('--route-progress', `${travelled / bounds.height * 100}%`);
+    const travelled = Math.max(0, Math.min(1, (window.innerHeight * .55 - bounds.top) / bounds.height));
+    const position = Math.min(length, travelled * length);
+    progress.style.strokeDasharray = `${position} ${length + 1}`;
+    const point = progress.getPointAtLength(position);
+    traveller.setAttribute('cx', point.x);
+    traveller.setAttribute('cy', point.y);
   };
   const requestRoute = () => {
     if (!routeFrame) routeFrame = requestAnimationFrame(updateRoute);
   };
-  updateRoute();
+  drawRoute();
+  window.addEventListener('load', drawRoute);
+  window.addEventListener('resize', drawRoute);
   window.addEventListener('scroll', requestRoute, { passive: true });
-  window.addEventListener('resize', requestRoute);
 }
 if (slides.length > 1) {
   let active = 0;
