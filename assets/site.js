@@ -52,6 +52,141 @@ if (preview) {
 }
 
 const slides = [...document.querySelectorAll('.hero-slide')];
+const hero = document.querySelector('.full-hero');
+if (hero) {
+  const updateHeroHeight = () => {
+    const header = document.querySelector('.site-header');
+    const ribbon = document.querySelector('.gig-ribbon');
+    const occupied = (header?.getBoundingClientRect().height || 0) + (ribbon?.getBoundingClientRect().height || 0);
+    hero.style.setProperty('--top-stack-height', `${occupied}px`);
+  };
+  updateHeroHeight();
+  if (typeof ResizeObserver !== 'undefined') {
+    const observer = new ResizeObserver(updateHeroHeight);
+    observer.observe(document.querySelector('.site-header'));
+    observer.observe(document.querySelector('.gig-ribbon'));
+  } else window.addEventListener('resize', updateHeroHeight);
+}
+const revealTargets = document.querySelectorAll('.record-copy, .record-grid .full-album, .about-home-grid > *, .watch-grid > *, .photo-home-head, .photo-home-grid a');
+if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  revealTargets.forEach(element => element.classList.add('will-reveal'));
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-revealed');
+      revealObserver.unobserve(entry.target);
+    });
+  }, { threshold: .08, rootMargin: '0px 0px -30px 0px' });
+  revealTargets.forEach(element => revealObserver.observe(element));
+}
+const storyHeadings = document.querySelectorAll('.home-story h2');
+if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  storyHeadings.forEach(heading => heading.classList.add('story-enter'));
+  const headingObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-in');
+      headingObserver.unobserve(entry.target);
+    });
+  }, { threshold: .2, rootMargin: '0px 0px -25px 0px' });
+  storyHeadings.forEach(heading => headingObserver.observe(heading));
+}
+const innerTargets = document.querySelectorAll('.subhero-copy h1, .member-profile, .gallery-group-heading, .gallery-item, .video-item, .music-album-grid > *, .gig-poster, .contact-page-grid > *');
+if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  innerTargets.forEach(element => element.classList.add(element.matches('.subhero-copy h1') ? 'inner-enter' : 'inner-reveal'));
+  const innerObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-in');
+      innerObserver.unobserve(entry.target);
+    });
+  }, { threshold: .06, rootMargin: '0px 0px -20px 0px' });
+  innerTargets.forEach(element => innerObserver.observe(element));
+}
+const homeStory = document.querySelector('.home-story');
+if (homeStory) {
+  const svg = homeStory.querySelector('.story-route');
+  const dots = svg.querySelector('.story-route__dots');
+  const progress = svg.querySelector('.story-route__progress');
+  const reveal = svg.querySelector('.story-route__reveal');
+  const maskBase = svg.querySelector('.story-route__mask-base');
+  const maskCuts = svg.querySelector('.story-route__mask-cuts');
+  const stops = [...homeStory.querySelectorAll('.story-stop')];
+  let routeFrame = 0;
+  const drawRoute = () => {
+    const storyRect = homeStory.getBoundingClientRect();
+    const points = stops.map(stop => {
+      const rect = stop.getBoundingClientRect();
+      return { x: rect.left - storyRect.left + rect.width / 2, y: rect.top - storyRect.top + rect.height * (stop.classList.contains('story-stop--bang') ? .82 : .5) - (stop.closest('h2').classList.contains('story-enter') && !stop.closest('h2').classList.contains('is-in') ? 17 : 0) - (stop.closest('.will-reveal:not(.is-revealed)') ? 25 : 0) };
+    });
+    svg.setAttribute('viewBox', `0 0 ${storyRect.width} ${storyRect.height}`);
+    reveal.setAttribute('width', storyRect.width);
+    maskBase.setAttribute('width', storyRect.width);
+    maskBase.setAttribute('height', storyRect.height);
+    maskCuts.replaceChildren();
+    homeStory.querySelectorAll('.cover-art, .full-album, .about-home-grid figure, .watch-home .video-frame, .photo-home-grid, p, a').forEach(element => {
+      const rect = element.getBoundingClientRect();
+      const cut = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      cut.setAttribute('x', rect.left - storyRect.left - 3);
+      cut.setAttribute('y', rect.top - storyRect.top - 3);
+      cut.setAttribute('width', rect.width + 6);
+      cut.setAttribute('height', rect.height + 6);
+      cut.setAttribute('fill', 'black');
+      maskCuts.append(cut);
+    });
+    // Cut the letterforms from the route while leaving each punctuation stop visible.
+    homeStory.querySelectorAll('h2').forEach(heading => {
+      const walker = document.createTreeWalker(heading, NodeFilter.SHOW_TEXT);
+      while (walker.nextNode()) {
+        const node = walker.currentNode;
+        if (!node.textContent.trim() || node.parentElement.closest('.story-stop')) continue;
+        const range = document.createRange();
+        range.selectNodeContents(node);
+        [...range.getClientRects()].forEach(rect => {
+          const cut = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+          cut.setAttribute('x', rect.left - storyRect.left - 2);
+          cut.setAttribute('y', rect.top - storyRect.top - 2);
+          cut.setAttribute('width', rect.width + 4);
+          cut.setAttribute('height', rect.height + 4);
+          cut.setAttribute('fill', 'black');
+          maskCuts.append(cut);
+        });
+      }
+    });
+    if (points.length < 2) return;
+    let path = `M ${points[0].x} ${points[0].y}`;
+    for (let i = 1; i < points.length; i++) {
+      const from = points[i - 1];
+      const to = points[i];
+      const sweep = (to.y - from.y) * .48;
+      path += ` C ${from.x} ${from.y + sweep}, ${to.x} ${to.y - sweep}, ${to.x} ${to.y}`;
+    }
+    dots.setAttribute('d', path);
+    progress.setAttribute('d', path);
+    updateRoute();
+  };
+  const updateRoute = () => {
+    routeFrame = 0;
+    const bounds = homeStory.getBoundingClientRect();
+    // Reveal at the same document position as the scroll cue, not by path length.
+    const visibleY = Math.max(0, Math.min(bounds.height, window.innerHeight * .55 - bounds.top));
+    reveal.setAttribute('height', visibleY);
+    stops.forEach(stop => {
+      const rect = stop.getBoundingClientRect();
+      stop.classList.toggle('is-passed', rect.top - bounds.top + rect.height / 2 <= visibleY);
+    });
+  };
+  const requestRoute = () => {
+    if (!routeFrame) routeFrame = requestAnimationFrame(updateRoute);
+  };
+  drawRoute();
+  [...storyHeadings, ...revealTargets].forEach(element => element.addEventListener('transitionend', event => {
+    if (event.propertyName === 'translate') drawRoute();
+  }));
+  window.addEventListener('load', drawRoute);
+  window.addEventListener('resize', drawRoute);
+  window.addEventListener('scroll', requestRoute, { passive: true });
+}
 if (slides.length > 1) {
   let active = 0;
   let timer;
