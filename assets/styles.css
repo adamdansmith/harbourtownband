@@ -187,3 +187,45 @@ body{background:var(--paper)}
 }
 @media(max-width:390px){.gig-ribbon .ribbon-inner{gap:6px}.gig-ribbon .ribbon-heading small{font-size:.58rem}.gig-ribbon .ribbon-gig strong{font-size:.66rem}}
 @media(prefers-reduced-motion:reduce){.home-story h2.story-enter{opacity:1;translate:none;transition:none}}
+
+/* The homepage's sea blue and print details carry through the inner pages. */
+.hero-stage h1 em{color:#147b9d}
+.hero-actions .button-cream{background:#092f46;color:#fff}
+.hero-actions .button-cream:hover{background:#146986;color:#fff}
+.hero-controls button:hover{background:#147b9d;color:#fff}
+.watch-home{background:#f8fbf8}
+.about-home::after{display:none}
+.subhero-copy h1{max-width:1100px;text-wrap:balance}
+.inner-stop{color:#58bfd0;transition:color .35s ease}
+.subhero::after{content:"";position:absolute;z-index:2;bottom:-1px;left:0;right:0;height:37px;pointer-events:none;background-size:100% 100%;background-repeat:no-repeat;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 37' preserveAspectRatio='none'%3E%3Cpath d='M0 25 C240 4 440 36 720 22 S1180 4 1440 23 V37 H0Z' fill='%23eef6f5'/%3E%3C/svg%3E")}
+.music-hero::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 37' preserveAspectRatio='none'%3E%3Cpath d='M0 25 C240 4 440 36 720 22 S1180 4 1440 23 V37 H0Z' fill='%23d9edf0'/%3E%3C/svg%3E")}
+.gigs-hero::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 37' preserveAspectRatio='none'%3E%3Cpath d='M0 25 C240 4 440 36 720 22 S1180 4 1440 23 V37 H0Z' fill='%23eaf3f3'/%3E%3C/svg%3E")}
+.subhero-copy h1.inner-enter,.inner-reveal{opacity:0;translate:0 18px;transition:opacity .68s ease,translate .68s cubic-bezier(.2,.7,.25,1)}
+.subhero-copy h1.inner-enter.is-in,.inner-reveal.is-in{opacity:1;translate:0 0}
+/* Record grooves echo the South Parade sleeve without cropping the painting. */
+.music-sleeve{position:relative;isolation:isolate;width:min(100%,490px);margin:0 0 35px}
+.music-sleeve::before{content:"";position:absolute;z-index:0;left:42%;top:8%;width:82%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at center,#d9edf0 0 8%,#0b405a 8.5% 13%,transparent 13.5%),repeating-radial-gradient(circle at center,#0d3043 0 3px,#16445a 4px 6px,#0d3043 7px 9px);animation:record-turn 16s linear infinite}
+.music-sleeve .music-cover{position:relative;z-index:1;width:100%;margin:0}
+.music-album{overflow:hidden}
+.other-records{position:relative}.other-records::before{content:"";position:absolute;right:0;top:-36px;width:220px;height:220px;border:35px solid #b3d6da;border-radius:50%;opacity:.5;pointer-events:none}
+.other-records>*{position:relative}
+/* Gig poster and live clips borrow the sleeve's ink and hatch. */
+.gig-poster-info{position:relative;isolation:isolate}
+.gig-poster-info::before{content:"";position:absolute;z-index:-1;right:-80px;top:-95px;width:360px;height:360px;border:44px solid #28728b;border-radius:50%;opacity:.42;pointer-events:none;animation:tide-drift 12s ease-in-out infinite alternate}
+.video-item .video-frame{position:relative;isolation:isolate;overflow:visible;box-shadow:10px 10px 0 #0b5e7c}
+.video-item .video-frame::before{content:"";position:absolute;z-index:-1;inset:18px -20px -20px 20px;background:repeating-linear-gradient(135deg,#357d91 0 2px,transparent 2px 13px);opacity:.45;pointer-events:none}
+.video-item .video-frame iframe{position:relative;display:block}
+/* Photographs remain the point of the gallery and band pages. */
+.member-profile figure{position:relative}
+.member-profile figure::before{content:"";position:absolute;inset:15px -15px -15px 15px;border:6px solid #17799a;pointer-events:none}
+.member-profile:nth-child(even) figure::before{inset:15px 15px -15px -15px;border-color:#dba958}
+.member-profile figure img{position:relative}
+.gallery-group-heading{border-bottom:0;position:relative;padding-bottom:25px}
+.gallery-group-heading::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:radial-gradient(circle,#147b9d 2px,transparent 2.4px) left center/17px 4px repeat-x;opacity:.62}
+.gallery-single .gallery-item:first-child{box-shadow:14px 14px 0 #0b5e7c}
+.contact-page{position:relative;overflow:hidden}
+.contact-page::before{content:"";position:absolute;left:-160px;top:30px;width:430px;height:430px;border:50px solid #bedde0;border-radius:50%;opacity:.55;pointer-events:none}
+.contact-page-grid{position:relative}
+.contact-box{box-shadow:13px 13px 0 #0b5e7c}
+@media(max-width:760px){.subhero::after{height:23px}.music-sleeve{margin:0 auto 35px;width:min(78%,440px)}.music-sleeve::before{left:36%;width:76%}.member-profile figure::before{inset:9px -9px -9px 9px;border-width:4px}.member-profile:nth-child(even) figure::before{inset:9px -9px -9px 9px}.contact-box{box-shadow:8px 8px 0 #0b5e7c}}
+@media(prefers-reduced-motion:reduce){.music-sleeve::before,.gig-poster-info::before{animation:none}.subhero-copy h1.inner-enter,.inner-reveal{opacity:1;translate:none;transition:none}}
