@@ -84,48 +84,35 @@ if (homeStory) {
   const svg = homeStory.querySelector('.story-route');
   const dots = svg.querySelector('.story-route__dots');
   const progress = svg.querySelector('.story-route__progress');
-  const traveller = svg.querySelector('.story-route__traveller');
+  const reveal = svg.querySelector('.story-route__reveal');
   const markers = [...homeStory.querySelectorAll('.story-marker')];
   let routeFrame = 0;
-  let length = 0;
   const drawRoute = () => {
     const storyRect = homeStory.getBoundingClientRect();
     const points = markers.map(marker => {
       const rect = marker.getBoundingClientRect();
-      const section = marker.closest('section').getBoundingClientRect();
-      return {
-        x: rect.left - storyRect.left + rect.width / 2,
-        y: rect.top - storyRect.top + rect.height / 2,
-        sectionTop: section.top - storyRect.top,
-        side: rect.left - storyRect.left + rect.width / 2 < storyRect.width / 2 ? 30 : storyRect.width - 30
-      };
+      return { x: rect.left - storyRect.left + rect.width / 2, y: rect.top - storyRect.top + rect.height / 2 };
     });
     svg.setAttribute('viewBox', `0 0 ${storyRect.width} ${storyRect.height}`);
+    reveal.setAttribute('width', storyRect.width);
     if (points.length < 2) return;
-    let path = `M ${points[0].side} ${points[0].y}`;
-    for (let index = 0; index < points.length - 1; index++) {
-      const point = points[index];
-      const next = points[index + 1];
-      const boundary = next.sectionTop;
-      path += ` L ${point.side} ${boundary - 115}`;
-      path += ` C ${point.side} ${boundary - 35}, ${next.side} ${boundary + 35}, ${next.side} ${boundary + 115}`;
-      path += ` L ${next.side} ${next.y}`;
+    let path = `M ${points[0].x} ${points[0].y}`;
+    for (let i = 1; i < points.length; i++) {
+      const from = points[i - 1];
+      const to = points[i];
+      const sweep = (to.y - from.y) * .48;
+      path += ` C ${from.x} ${from.y + sweep}, ${to.x} ${to.y - sweep}, ${to.x} ${to.y}`;
     }
     dots.setAttribute('d', path);
     progress.setAttribute('d', path);
-    length = progress.getTotalLength();
     updateRoute();
   };
   const updateRoute = () => {
     routeFrame = 0;
-    if (!length) return;
     const bounds = homeStory.getBoundingClientRect();
-    const travelled = Math.max(0, Math.min(1, (window.innerHeight * .55 - bounds.top) / bounds.height));
-    const position = Math.min(length, travelled * length);
-    progress.style.strokeDasharray = `${position} ${length + 1}`;
-    const point = progress.getPointAtLength(position);
-    traveller.setAttribute('cx', point.x);
-    traveller.setAttribute('cy', point.y);
+    // Reveal at the same document position as the scroll cue, not by path length.
+    const visibleY = Math.max(0, Math.min(bounds.height, window.innerHeight * .55 - bounds.top));
+    reveal.setAttribute('height', visibleY);
   };
   const requestRoute = () => {
     if (!routeFrame) routeFrame = requestAnimationFrame(updateRoute);
