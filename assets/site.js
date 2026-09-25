@@ -52,6 +52,33 @@ if (preview) {
 }
 
 const slides = [...document.querySelectorAll('.hero-slide')];
+const hero = document.querySelector('.full-hero');
+if (hero) {
+  const updateHeroHeight = () => {
+    const header = document.querySelector('.site-header');
+    const ribbon = document.querySelector('.gig-ribbon');
+    const occupied = (header?.getBoundingClientRect().height || 0) + (ribbon?.getBoundingClientRect().height || 0);
+    hero.style.setProperty('--top-stack-height', `${occupied}px`);
+  };
+  updateHeroHeight();
+  if (typeof ResizeObserver !== 'undefined') {
+    const observer = new ResizeObserver(updateHeroHeight);
+    observer.observe(document.querySelector('.site-header'));
+    observer.observe(document.querySelector('.gig-ribbon'));
+  } else window.addEventListener('resize', updateHeroHeight);
+}
+const revealTargets = document.querySelectorAll('.record-copy, .record-grid .full-album, .about-home-grid > *, .watch-grid > *, .photo-home-head, .photo-home-grid a');
+if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  revealTargets.forEach(element => element.classList.add('will-reveal'));
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-revealed');
+      revealObserver.unobserve(entry.target);
+    });
+  }, { threshold: .08, rootMargin: '0px 0px -30px 0px' });
+  revealTargets.forEach(element => revealObserver.observe(element));
+}
 if (slides.length > 1) {
   let active = 0;
   let timer;
