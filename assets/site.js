@@ -79,6 +79,18 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
   }, { threshold: .08, rootMargin: '0px 0px -30px 0px' });
   revealTargets.forEach(element => revealObserver.observe(element));
 }
+const storyHeadings = document.querySelectorAll('.home-story h2');
+if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  storyHeadings.forEach(heading => heading.classList.add('story-enter'));
+  const headingObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-in');
+      headingObserver.unobserve(entry.target);
+    });
+  }, { threshold: .2, rootMargin: '0px 0px -25px 0px' });
+  storyHeadings.forEach(heading => headingObserver.observe(heading));
+}
 const homeStory = document.querySelector('.home-story');
 if (homeStory) {
   const svg = homeStory.querySelector('.story-route');
