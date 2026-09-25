@@ -105,7 +105,7 @@ if (homeStory) {
     const storyRect = homeStory.getBoundingClientRect();
     const points = stops.map(stop => {
       const rect = stop.getBoundingClientRect();
-      return { x: rect.left - storyRect.left + rect.width / 2, y: rect.top - storyRect.top + rect.height * (stop.classList.contains('story-stop--bang') ? .82 : .5) };
+      return { x: rect.left - storyRect.left + rect.width / 2, y: rect.top - storyRect.top + rect.height * (stop.classList.contains('story-stop--bang') ? .82 : .5) - (stop.closest('h2').classList.contains('story-enter') && !stop.closest('h2').classList.contains('is-in') ? 17 : 0) - (stop.closest('.will-reveal:not(.is-revealed)') ? 25 : 0) };
     });
     svg.setAttribute('viewBox', `0 0 ${storyRect.width} ${storyRect.height}`);
     reveal.setAttribute('width', storyRect.width);
@@ -168,6 +168,9 @@ if (homeStory) {
     if (!routeFrame) routeFrame = requestAnimationFrame(updateRoute);
   };
   drawRoute();
+  [...storyHeadings, ...revealTargets].forEach(element => element.addEventListener('transitionend', event => {
+    if (event.propertyName === 'translate') drawRoute();
+  }));
   window.addEventListener('load', drawRoute);
   window.addEventListener('resize', drawRoute);
   window.addEventListener('scroll', requestRoute, { passive: true });
