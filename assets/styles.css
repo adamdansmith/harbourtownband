@@ -72,11 +72,11 @@ body{background:var(--paper)}
 .scroll-cue:hover .scroll-arrow,.scroll-cue:focus-visible .scroll-arrow{transform:translateY(4px);background:#176b9a}
 /* Bold artwork sits behind the record without a separate divider strip. */
 .record-feature{isolation:isolate;padding-top:110px}
-.record-feature::before{top:90px;right:-150px;width:500px;height:500px;border-width:65px;border-color:#77b8c7;opacity:.65}
+.record-feature::before{display:none}
 .record-feature::after{display:none}
 .record-copy .cover-art{z-index:1;box-shadow:18px 18px 0 #0b5e7c}
-.record-copy .cover-art::before{content:"";position:absolute;z-index:-1;inset:-35px 37px 40px -38px;background:#ecb75e;transform:rotate(-7deg)}
-.record-copy .cover-art::after{content:"";position:absolute;z-index:-2;left:-68px;top:60px;width:130%;height:74%;background:repeating-linear-gradient(135deg,#0d668c 0 6px,transparent 6px 21px);opacity:.75;transform:rotate(-7deg)}
+.record-copy .cover-art::before{display:none}
+.record-copy .cover-art::after{display:none}
 .album-note{position:relative;max-width:390px!important;margin:34px 0 0;padding:21px 0 0 22px;border-left:3px solid #176b9a;font-size:.95rem;line-height:1.65;color:#244e62!important}
 .album-note::before{content:"SOUTH PARADE / THE STORY";display:block;font-size:.65rem;letter-spacing:.14em;font-weight:800;color:#0b5e7c;margin-bottom:10px}
 /* Keep the large image shapes; let the section colours make the transition. */
@@ -87,21 +87,32 @@ body{background:var(--paper)}
 .about-home-grid figure::before{content:"";position:absolute;inset:34px -34px -34px 34px;border:9px solid #176b9a;pointer-events:none}.about-home-grid img{position:relative}
 .watch-home{position:relative;overflow:hidden}.watch-home::before,.watch-home::after{display:none}
 .photo-home{position:relative}.photo-home::before,.photo-home::after{display:none}
-/* A dotted route follows the music from South Parade to the seafront and pub. */
-.home-story{position:relative;--route-x:max(15px,calc((100vw - var(--max))/2 - 39px))}
-.story-route{position:absolute;z-index:3;top:0;bottom:0;left:var(--route-x);width:4px;background:radial-gradient(circle,#0a6889 2px,transparent 2.2px) center top/4px 16px repeat-y;pointer-events:none}
-.story-route__progress{position:absolute;top:0;left:1px;width:2px;height:var(--route-progress,0%);background:#e9ad5d}
-.story-route__traveller{position:absolute;top:var(--route-progress,0%);left:50%;width:16px;height:16px;border:4px solid #0b405a;border-radius:50%;background:#f1c980;transform:translate(-50%,-50%);box-shadow:0 0 0 3px #f1c980;transition:top .15s linear}
-.home-story>section{position:relative}
-.home-story>section::after{content:attr(data-story-stop);position:absolute;z-index:4;top:66px;left:calc(var(--route-x) - 12px);width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:#0b405a;color:#f1c980;font-size:.59rem;font-weight:800;letter-spacing:-.04em;box-shadow:0 0 0 4px #d9edf0}
-.home-story>.about-home::after{display:grid;box-shadow:0 0 0 4px #f8fbf8}.home-story>.watch-home::after{box-shadow:0 0 0 4px #dcebee}.home-story>.photo-home::after{display:grid;box-shadow:0 0 0 4px #eaf3f3}.home-story>.home-contact::after{box-shadow:0 0 0 4px #0b405a}
-.home-story .eyebrow{display:flex;align-items:center;flex-wrap:wrap;gap:10px 14px}
-.route-place{padding-left:13px;border-left:1px solid currentColor;color:#11617e;font-size:.59rem;letter-spacing:.12em;white-space:nowrap}
-.home-contact .route-place{color:#f1c980}
-.home-story .eyebrow::after{content:"";width:72px;height:3px;background:radial-gradient(circle,#0b5e7c 1.5px,transparent 2px) left center/11px 3px repeat-x}
-.home-story .home-contact .eyebrow::after{background-image:radial-gradient(circle,#f1c980 1.5px,transparent 2px)}
-/* The gig is shown straight, as filmed in the Golden Eagle. */
-.watch-home .video-frame{box-shadow:16px 16px 0 #0b5e7c}
+/* A route between the band's record, players, pub, seafront and bookings. */
+.home-story{position:relative;isolation:isolate}
+.home-story>section{position:relative;z-index:0}
+.home-story>section>.wrap{position:relative;z-index:2}
+.story-route{position:absolute;inset:0;width:100%;height:100%;z-index:1;overflow:visible;pointer-events:none}
+.story-route__dots{fill:none;stroke:#0b5e7c;stroke-width:5;stroke-linecap:round;stroke-dasharray:1 17;opacity:.38}
+.story-route__progress{fill:none;stroke:#de9e4b;stroke-width:3;stroke-linecap:round;opacity:.85}
+.story-route__traveller{fill:#f1c980;stroke:#0b405a;stroke-width:4}
+.home-story .eyebrow{display:block}
+.story-marker{display:grid;place-items:center;width:88px;height:88px;margin-bottom:22px;border:6px solid #0b5e7c;background:#f1c980;box-shadow:7px 7px 0 #e5aa54;overflow:hidden;position:relative}
+.story-marker img{width:100%;height:100%;object-fit:cover;filter:saturate(.85)}
+.story-marker--record{border-radius:50%;box-shadow:0 0 0 5px #f1c980,9px 9px 0 5px #0b5e7c}
+.story-marker--band{border-radius:46% 46% 0 0}
+.story-marker--pub{border-radius:46% 46% 4px 4px;border-color:#0b405a;box-shadow:7px 7px 0 #e5aa54}
+.story-marker--sea{border-radius:3px;border-color:#f1c980;box-shadow:7px 7px 0 #0b5e7c}
+.story-marker--logo{border-radius:50%;background:#f1c980;box-shadow:0 0 0 5px #f1c980,9px 9px 0 5px #137497}
+.story-marker--logo img{object-fit:contain;padding:5px}
+/* The video sits in a straight pier cinema frame, clear of its controls. */
+.watch-grid{grid-template-columns:1fr;gap:42px;justify-items:center;text-align:center}
+.watch-grid>div:first-child{max-width:650px}
+.watch-grid .story-marker{margin-left:auto;margin-right:auto}
+.watch-grid p:not(.eyebrow){max-width:620px}
+.watch-grid .video-frame{position:relative;width:min(100%,930px);border:11px solid #0b405a;border-radius:130px 130px 3px 3px / 28px 28px 3px 3px;box-shadow:0 0 0 5px #f1c980,0 0 0 9px #0b5e7c,15px 20px 0 #b2d4d9;overflow:visible}
+.watch-grid .video-frame::before{content:"";position:absolute;z-index:2;left:50%;top:-25px;width:72px;height:11px;border-top:4px solid #0b405a;border-bottom:4px solid #0b405a;transform:translateX(-50%);pointer-events:none}
+.watch-grid .video-frame iframe{display:block;border-radius:118px 118px 0 0 / 17px 17px 0 0}
+.photo-home-head{flex-direction:row-reverse}.photo-home-head>div{text-align:right}.photo-home-head .story-marker{margin-left:auto}
 .photo-home-grid a{overflow:hidden}
 .photo-home-grid a:nth-child(2){transform:translateY(22px)}.photo-home-grid a:nth-child(3){transform:translateY(-12px)}
 .home-contact{isolation:isolate;background:linear-gradient(90deg,#092c43ee 0%,#092c43d6 57%,#092c43a8 100%),url('gallery/harbour-town-2023-12.webp') center 43%/cover;color:#fff}
@@ -110,7 +121,7 @@ body{background:var(--paper)}
 .will-reveal{opacity:0;translate:0 25px;transition:opacity .7s ease,translate .7s ease}.will-reveal.is-revealed{opacity:1;translate:0 0}.photo-home-grid a:nth-child(2).will-reveal{transition-delay:.1s}.photo-home-grid a:nth-child(3).will-reveal{transition-delay:.2s}
 @media(max-width:760px){.ribbon-dates{border-top-color:#0d4b6655}.full-hero{height:calc(100svh - var(--top-stack-height, 140px));min-height:470px}.hero-stage{bottom:100px}.hero-stage h1{font-size:clamp(4.8rem,13.8vw,7.5rem)}.record-feature,.about-home{padding-top:85px}.about-home::before{left:-40%;border-width:40px}.about-home-grid figure::before{inset:18px -13px -13px 13px;border-width:6px}.record-copy .cover-art::before{inset:-18px 25px 24px -22px}.record-copy .cover-art::after{left:-35px}.photo-home-grid a:nth-child(2),.photo-home-grid a:nth-child(3){transform:none}}
 @media(max-width:480px){.full-hero{height:calc(100svh - var(--top-stack-height, 135px));min-height:450px}.hero-stage{bottom:100px}.hero-stage h1{font-size:clamp(3.45rem,15vw,5.5rem)}.hero-bottom{bottom:19px}.scroll-cue span:first-child{display:none}.scroll-arrow{width:34px;height:34px}.record-copy .cover-art::after{left:-23px;width:112%}.album-note{margin-bottom:35px}}
-@media(max-width:760px){.home-story{--route-x:12px}.story-route{width:3px;background-size:3px 13px}.story-route__traveller{width:12px;height:12px;border-width:3px}.home-story>section::after{left:calc(var(--route-x) - 9px);top:42px;width:21px;height:21px;font-size:.48rem}.home-story .eyebrow::after{width:40px}.route-place{font-size:.55rem}.home-contact{background-position:60% center}.watch-home .video-frame{margin-right:12px}}
+@media(max-width:760px){.story-marker{width:66px;height:66px;border-width:4px;margin-bottom:18px}.watch-grid{gap:35px}.watch-home .video-frame{margin:0;width:calc(100% - 22px);border-width:7px;border-radius:70px 70px 2px 2px / 18px 18px 2px 2px}.watch-home .video-frame iframe{border-radius:63px 63px 0 0 / 11px 11px 0 0}.photo-home-head{gap:15px}.home-contact{background-position:60% center}}
 @media(max-height:650px){.full-hero{min-height:450px}.hero-stage{bottom:85px}.hero-stage h1{margin-bottom:28px}}
 @media(prefers-reduced-motion:reduce){.will-reveal{opacity:1;translate:none;transition:none}.scroll-arrow{transition:none}}
 
