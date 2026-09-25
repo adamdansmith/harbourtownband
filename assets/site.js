@@ -103,15 +103,15 @@ if (homeStory) {
     svg.setAttribute('viewBox', `0 0 ${storyRect.width} ${storyRect.height}`);
     if (points.length < 2) return;
     let path = `M ${points[0].x} ${points[0].y}`;
-    points.forEach((point, index) => {
-      path += ` L ${point.side} ${point.y}`;
-      if (index === points.length - 1) return;
+    for (let index = 0; index < points.length - 1; index++) {
+      const point = points[index];
       const next = points[index + 1];
+      path += ` L ${point.side} ${point.y}`;
       const boundary = next.sectionTop;
       path += ` L ${point.side} ${boundary - 115}`;
       path += ` C ${point.side} ${boundary - 35}, ${next.side} ${boundary + 35}, ${next.side} ${boundary + 115}`;
       path += ` L ${next.side} ${next.y} L ${next.x} ${next.y}`;
-    });
+    }
     dots.setAttribute('d', path);
     progress.setAttribute('d', path);
     length = progress.getTotalLength();
