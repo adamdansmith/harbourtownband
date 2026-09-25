@@ -89,7 +89,7 @@ body{background:var(--paper)}
 .photo-home{position:relative}.photo-home::before,.photo-home::after{display:none}
 /* A South Parade Pier roundel marks each stop on the flowing route. */
 .home-story{position:relative;isolation:isolate}
-.home-story>section{position:relative;z-index:0}
+.home-story>section{position:relative;z-index:auto}
 .home-story>section>.wrap{position:relative;z-index:2}
 .story-route{position:absolute;inset:0;width:100%;height:100%;z-index:1;overflow:visible;pointer-events:none}
 .story-route__dots,.story-route__progress{fill:none;stroke-linecap:round;stroke-width:6;stroke-dasharray:1 15}
