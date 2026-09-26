@@ -93,7 +93,7 @@ body{background:var(--paper)}
 .home-story>section>.wrap{position:relative;z-index:4}
 .story-route{position:absolute;inset:0;width:100%;height:100%;z-index:3;overflow:visible;pointer-events:none}
 .story-route__dots,.story-route__progress{fill:none;stroke-linecap:round;stroke-width:6;stroke-dasharray:1 15}
-.story-route__dots{stroke:#0b5e7c;opacity:.5}
+.story-route__dots{display:none}
 .story-route__progress{stroke:#edae57;stroke-width:7}
 .home-story .eyebrow{display:block}
 .story-stop{display:inline-block;position:relative;vertical-align:baseline;width:.22em;height:.22em;margin-left:.025em;border-radius:50%;background:#0b5e7c;color:transparent;line-height:0;overflow:hidden;transition:background-color .3s,transform .3s}
@@ -195,14 +195,12 @@ body{background:var(--paper)}
 .about-home::after{display:none}
 .subhero-copy h1{max-width:1100px;text-wrap:balance}
 .inner-stop{color:#58bfd0;transition:color .35s ease}
-.subhero::after{content:"";position:absolute;z-index:2;bottom:-1px;left:0;right:0;height:37px;pointer-events:none;background-size:100% 100%;background-repeat:no-repeat;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 37' preserveAspectRatio='none'%3E%3Cpath d='M0 25 C240 4 440 36 720 22 S1180 4 1440 23 V37 H0Z' fill='%23eef6f5'/%3E%3C/svg%3E")}
-.music-hero::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 37' preserveAspectRatio='none'%3E%3Cpath d='M0 25 C240 4 440 36 720 22 S1180 4 1440 23 V37 H0Z' fill='%23d9edf0'/%3E%3C/svg%3E")}
-.gigs-hero::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 37' preserveAspectRatio='none'%3E%3Cpath d='M0 25 C240 4 440 36 720 22 S1180 4 1440 23 V37 H0Z' fill='%23eaf3f3'/%3E%3C/svg%3E")}
+.subhero::after{display:none}
 .subhero-copy h1.inner-enter,.inner-reveal{opacity:0;translate:0 18px;transition:opacity .68s ease,translate .68s cubic-bezier(.2,.7,.25,1)}
 .subhero-copy h1.inner-enter.is-in,.inner-reveal.is-in{opacity:1;translate:0 0}
 /* Record grooves echo the South Parade sleeve without cropping the painting. */
 .music-sleeve{position:relative;isolation:isolate;width:min(100%,490px);margin:0 0 35px}
-.music-sleeve::before{content:"";position:absolute;z-index:0;left:42%;top:8%;width:82%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at center,#d9edf0 0 8%,#0b405a 8.5% 13%,transparent 13.5%),repeating-radial-gradient(circle at center,#0d3043 0 3px,#16445a 4px 6px,#0d3043 7px 9px);animation:record-turn 16s linear infinite}
+.music-sleeve::before{content:"";position:absolute;z-index:0;left:42%;top:8%;width:82%;aspect-ratio:1;border-radius:50%;background:conic-gradient(from 10deg,transparent 0 48deg,#afdae132 60deg,transparent 75deg 207deg,#f1c98065 217deg,transparent 232deg),radial-gradient(circle at center,#08293b 0 1.4%,#d9edf0 1.5% 2.7%,transparent 2.8%),conic-gradient(from 22deg at center,#e6a65c 0 35deg,#d9edf0 35deg 142deg,#e6a65c 142deg 160deg,#d9edf0 160deg 360deg) center/20% 20% no-repeat,repeating-radial-gradient(circle at center,#0b2e40 0 2px,#19495d 3px 4px,#0b2e40 5px 7px);box-shadow:3px 5px 12px #08293b55;animation:record-turn 6s linear infinite}
 .music-sleeve .music-cover{position:relative;z-index:1;width:100%;margin:0}
 .music-album{overflow:hidden}
 .other-records{position:relative}.other-records::before{content:"";position:absolute;right:0;top:-36px;width:220px;height:220px;border:35px solid #b3d6da;border-radius:50%;opacity:.5;pointer-events:none}
@@ -225,5 +223,9 @@ body{background:var(--paper)}
 .contact-page::before{content:"";position:absolute;left:-160px;top:30px;width:430px;height:430px;border:50px solid #bedde0;border-radius:50%;opacity:.55;pointer-events:none}
 .contact-page-grid{position:relative}
 .contact-box{box-shadow:13px 13px 0 #0b5e7c}
-@media(max-width:760px){.subhero::after{height:23px}.music-sleeve{margin:0 auto 35px;width:min(78%,440px)}.music-sleeve::before{left:36%;width:76%}.member-profile figure::before{inset:9px -9px -9px 9px;border-width:4px}.member-profile:nth-child(even) figure::before{inset:9px -9px -9px 9px}.contact-box{box-shadow:8px 8px 0 #0b5e7c}}
+@media(max-width:760px){.story-route{display:none}.music-sleeve{margin:0 auto 35px;width:min(78%,440px)}.music-sleeve::before{left:36%;width:76%}.member-profile figure::before{inset:9px -9px -9px 9px;border-width:4px}.member-profile:nth-child(even) figure::before{inset:9px -9px -9px 9px}.contact-box{box-shadow:8px 8px 0 #0b5e7c}}
 @media(prefers-reduced-motion:reduce){.music-sleeve::before,.gig-poster-info::before{animation:none}.subhero-copy h1.inner-enter,.inner-reveal{opacity:1;translate:none;transition:none}}
+/* Let the punctuation keep the rhythm after the dotted route ends. */
+.inner-stop{font-size:1.16em;line-height:0;color:#58bfd0;transition:color .35s ease}
+.inner-stop.is-passed{color:#f1c980}
+.record-copy .cover-art::before{display:block;background:conic-gradient(from 10deg,transparent 0 48deg,#afdae132 60deg,transparent 75deg 207deg,#f1c98065 217deg,transparent 232deg),radial-gradient(circle at center,#08293b 0 1.4%,#d9edf0 1.5% 2.7%,transparent 2.8%),conic-gradient(from 22deg at center,#e6a65c 0 35deg,#d9edf0 35deg 142deg,#e6a65c 142deg 160deg,#d9edf0 160deg 360deg) center/20% 20% no-repeat,repeating-radial-gradient(circle at center,#0b2e40 0 2px,#19495d 3px 4px,#0b2e40 5px 7px);box-shadow:3px 5px 12px #08293b55;animation:record-turn 6s linear infinite}
