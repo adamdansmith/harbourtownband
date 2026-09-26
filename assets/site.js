@@ -128,6 +128,10 @@ if (homeStory) {
   const stops = [...homeStory.querySelectorAll('.story-stop')];
   let routeFrame = 0;
   const drawRoute = () => {
+    if (window.matchMedia('(max-width: 760px)').matches) {
+      updateRoute();
+      return;
+    }
     const storyRect = homeStory.getBoundingClientRect();
     const points = stops.map(stop => {
       const rect = stop.getBoundingClientRect();
