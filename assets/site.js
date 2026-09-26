@@ -92,6 +92,20 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
   storyHeadings.forEach(heading => headingObserver.observe(heading));
 }
 const innerTargets = document.querySelectorAll('.subhero-copy h1, .member-profile, .gallery-group-heading, .gallery-item, .video-item, .music-album-grid > *, .gig-poster, .contact-page-grid > *');
+const innerStops = [...document.querySelectorAll('.inner-stop')];
+if (innerStops.length) {
+  let stopFrame = 0;
+  const updateInnerStops = () => {
+    stopFrame = 0;
+    innerStops.forEach(stop => stop.classList.toggle('is-passed', stop.getBoundingClientRect().top <= innerHeight * .55));
+  };
+  const requestInnerStops = () => {
+    if (!stopFrame) stopFrame = requestAnimationFrame(updateInnerStops);
+  };
+  updateInnerStops();
+  window.addEventListener('scroll', requestInnerStops, { passive: true });
+  window.addEventListener('resize', requestInnerStops);
+}
 if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   innerTargets.forEach(element => element.classList.add(element.matches('.subhero-copy h1') ? 'inner-enter' : 'inner-reveal'));
   const innerObserver = new IntersectionObserver(entries => {
