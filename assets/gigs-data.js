@@ -1,0 +1,3 @@
+const gigs = [
+  { date: '2026-10-18', venue: 'The Golden Eagle', place: 'Southsea', time: '4pm', url: 'https://www.goldeneaglesouthsea.co.uk/', photo: 'assets/gallery/golden-eagle-02.webp' }
+];
