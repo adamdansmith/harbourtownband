@@ -16,8 +16,9 @@ if (menuButton && nav) {
   document.addEventListener('click', event => { if (!nav.contains(event.target) && !menuButton.contains(event.target)) closeMenu(); });
 }
 
+const renderGigs = entries => {
 const today = new Date().toLocaleDateString('en-CA', { timeZone: 'Europe/London' });
-const validGigs = gigs.filter(gig => /^\d{4}-\d{2}-\d{2}$/.test(gig.date));
+const validGigs = entries.filter(gig => /^\d{4}-\d{2}-\d{2}$/.test(gig.date));
 const upcoming = validGigs
   .filter(gig => !gig.archived && gig.date >= today)
   .sort((a, b) => a.date.localeCompare(b.date));
@@ -61,6 +62,13 @@ if (preview) {
   }).join('') || '<span class="ribbon-empty">New gigs will appear here.</span>';
   if (!upcoming.length) document.querySelector('.ribbon-heading small').textContent = 'NEW DATES SOON';
 }
+
+};
+renderGigs(gigs);
+fetch('/api/gigs', { cache: 'no-store' })
+  .then(response => { if (!response.ok) throw Error('Gig storage unavailable'); return response.json(); })
+  .then(data => { if (Array.isArray(data)) renderGigs(data); })
+  .catch(() => { /* Keep the confirmed dates bundled with the static site. */ });
 
 const slides = [...document.querySelectorAll('.hero-slide')];
 const hero = document.querySelector('.full-hero');
