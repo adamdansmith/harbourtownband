@@ -18,7 +18,7 @@ if (list) {
   const escape = value => String(value ?? '').replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character]));
   const field = (name, label, value, type = 'text', required = false) => `<label>${label}<input name="${name}" type="${type}" value="${escape(value)}" ${required ? 'required' : ''}></label>`;
   const render = () => {
-    list.innerHTML = gigs.map((gig, index) => `<article class="manage-card" data-index="${index}"><div class="manage-card-head"><h2>${escape(gig.venue || 'New gig')}</h2><span>${gig.archived ? 'Archived' : 'Scheduled'}</span></div><div class="manage-fields">${field('date', 'Date', gig.date, 'date', true)}${field('venue', 'Venue', gig.venue, 'text', true)}${field('place', 'Town / area', gig.place, 'text', true)}${field('time', 'Time (optional)', gig.time)}${field('url', 'Venue link (optional)', gig.url, 'url')}${field('photo', 'Photo path (optional)', gig.photo)}</div><div class="manage-card-actions"><label><input name="archived" type="checkbox" ${gig.archived ? 'checked' : ''}> Archive this gig</label><button type="button" data-remove="${index}">Remove gig</button></div></article>`).join('') || '<p>No gigs yet. Add the first one above.</p>';
+    list.innerHTML = gigs.map((gig, index) => `<article class="manage-card${gig.archived ? ' is-archived' : ''}" data-index="${index}"><div class="manage-card-head"><h2>${escape(gig.venue || 'New gig')}</h2><span>${gig.archived ? 'Archived' : 'Scheduled'}</span></div><div class="manage-fields">${field('date', 'Date', gig.date, 'date', true)}${field('venue', 'Venue', gig.venue, 'text', true)}${field('place', 'Town / area', gig.place, 'text', true)}${field('time', 'Time (optional)', gig.time)}${field('url', 'Venue link (optional)', gig.url, 'url')}${field('photo', 'Photo path (optional)', gig.photo)}</div><div class="manage-card-actions"><label><input name="archived" type="checkbox" ${gig.archived ? 'checked' : ''}> Archive this gig</label><button type="button" data-remove="${index}">Remove gig</button></div></article>`).join('') || '<p>No gigs yet. Add the first one above.</p>';
   };
   const collect = () => {
     gigs = [...list.querySelectorAll('.manage-card')].map(card => {
@@ -28,7 +28,7 @@ if (list) {
   };
   fetch('/api/gigs', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('Unable to load gigs.'); return response.json(); }).then(data => { gigs = data; render(); }).catch(error => report(error.message, true));
   list.addEventListener('input', () => { changed = true; });
-  list.addEventListener('change', () => { changed = true; });
+  list.addEventListener('change', event => { changed = true; if (event.target.name === 'archived') { const card = event.target.closest('.manage-card'); card.classList.toggle('is-archived', event.target.checked); card.querySelector('.manage-card-head span').textContent = event.target.checked ? 'Archived' : 'Scheduled'; } });
   list.addEventListener('click', event => {
     const button = event.target.closest('[data-remove]');
     if (!button) return;
