@@ -1,7 +1,3 @@
-const gigs = [
-  { date: '2026-10-18', venue: 'The Golden Eagle', place: 'Southsea', time: '4pm', url: 'https://www.goldeneaglesouthsea.co.uk/', photo: 'assets/gallery/golden-eagle-02.webp' }
-];
-
 const menuButton = document.querySelector('.menu-button');
 const nav = document.querySelector('.site-nav');
 if (menuButton && nav) {
@@ -20,9 +16,14 @@ if (menuButton && nav) {
   document.addEventListener('click', event => { if (!nav.contains(event.target) && !menuButton.contains(event.target)) closeMenu(); });
 }
 
-const upcoming = gigs
-  .filter(gig => /^\d{4}-\d{2}-\d{2}$/.test(gig.date) && gig.date >= new Date().toLocaleDateString('en-CA', { timeZone: 'Europe/London' }))
+const today = new Date().toLocaleDateString('en-CA', { timeZone: 'Europe/London' });
+const validGigs = gigs.filter(gig => /^\d{4}-\d{2}-\d{2}$/.test(gig.date));
+const upcoming = validGigs
+  .filter(gig => !gig.archived && gig.date >= today)
   .sort((a, b) => a.date.localeCompare(b.date));
+const archived = validGigs
+  .filter(gig => gig.archived || gig.date < today)
+  .sort((a, b) => b.date.localeCompare(a.date));
 const dateFormat = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/London' });
 const escapeHTML = value => String(value).replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character]));
 const safeLink = url => { try { const parsed = new URL(url); return ['http:', 'https:'].includes(parsed.protocol) ? parsed.href : null; } catch { return null; } };
@@ -39,6 +40,16 @@ if (list && upcoming.length) {
 if (list && !upcoming.length) {
   list.innerHTML = '<p class="no-gigs">New dates will appear here. Follow us on <a href="https://www.facebook.com/harbourtownband1" target="_blank" rel="noopener noreferrer">Facebook</a> for updates.</p>';
   document.querySelector('.gigs-intro h2').innerHTML = 'More dates<br><em>soon.</em>';
+}
+const archive = document.querySelector('[data-gigs-archive]');
+if (archive) {
+  archive.querySelector('[data-archive-count]').textContent = `${archived.length} ${archived.length === 1 ? 'gig' : 'gigs'}`;
+  archive.querySelector('[data-archive-list]').innerHTML = archived.length
+    ? archived.map(gig => {
+      const date = new Date(`${gig.date}T12:00:00Z`);
+      return `<li class="archive-gig"><time datetime="${gig.date}">${dateFormat.format(date)}</time><div><strong>${escapeHTML(gig.venue)}</strong><span>${escapeHTML(gig.place || 'Portsmouth')}${gig.time ? ` · ${escapeHTML(gig.time)}` : ''}</span></div></li>`;
+    }).join('')
+    : '<li class="archive-empty">Past gigs will appear here after they have played.</li>';
 }
 const preview = document.querySelector('[data-gigs-preview]');
 if (preview) {
