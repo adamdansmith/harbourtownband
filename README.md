@@ -22,6 +22,8 @@ Remove `archived: true` to restore a future gig. Archived shows appear newest fi
 
 ## Password editor setup
 
+The editor is served at `/manage-gigs` once its Cloudflare bindings and secrets are available.
+
 The unlinked `/manage-gigs` route is served by a Cloudflare Pages Function. It checks the password on the server and uses an HttpOnly, Secure, SameSite cookie for an eight-hour editing session. The page and API return `noindex` and `no-store` headers. Set up both the preview and production environments before relying on it:
 
 1. Create a Cloudflare Workers KV namespace for the gigs, then bind it to this Pages project as `GIGS` in **Settings → Bindings**. Bind the same namespace to preview and production so edits on the preview appear on the live site when this branch is published.
