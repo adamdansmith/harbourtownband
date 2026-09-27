@@ -45,13 +45,15 @@ if (list && !upcoming.length) {
 }
 const archive = document.querySelector('[data-gigs-archive]');
 if (archive) {
+  archive.hidden = archived.length === 0;
+  if (!archived.length) archive.open = false;
   archive.querySelector('[data-archive-count]').textContent = `${archived.length} ${archived.length === 1 ? 'gig' : 'gigs'}`;
   archive.querySelector('[data-archive-list]').innerHTML = archived.length
     ? archived.map(gig => {
       const date = new Date(`${gig.date}T12:00:00Z`);
       return `<li class="archive-gig"><time datetime="${gig.date}">${dateFormat.format(date)}</time><div><strong>${escapeHTML(gig.venue)}</strong><span>${escapeHTML(gig.place || 'Portsmouth')}${gig.time ? ` · ${escapeHTML(gig.time)}` : ''}</span></div></li>`;
     }).join('')
-    : '<li class="archive-empty">Past gigs will appear here after they have played.</li>';
+    : '';
 }
 const preview = document.querySelector('[data-gigs-preview]');
 if (preview) {
