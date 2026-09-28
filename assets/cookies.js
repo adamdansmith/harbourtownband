@@ -22,7 +22,7 @@
   const banner = document.createElement('section');
   banner.className = 'cookie-banner';
   banner.setAttribute('aria-label', 'Cookie choices');
-  banner.innerHTML = `<div class="cookie-banner-copy"><strong>Cookies on Harbour Town</strong><p>We do not use tracking cookies. Bandcamp and YouTube players may use cookies if you choose to load them.</p><details><summary>Cookie details</summary><p>We do not use advertising or analytics cookies. Your choice is saved on this device. Media providers may use cookies when their players load: <a href="https://bandcamp.com/privacy" target="_blank" rel="noopener noreferrer">Bandcamp</a> and <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">YouTube</a>. <a href="privacy.html">Privacy &amp; cookies</a>.</p></details></div><div class="cookie-banner-actions"><button type="button" data-choice="essential">Essential only</button><button type="button" data-choice="all">Yes, accept all</button></div>`;
+  banner.innerHTML = `<div class="cookie-banner-copy"><strong>Cookies on Harbour Town</strong><p>We do not use tracking cookies. Allow Bandcamp and YouTube players? They may use their own cookies.</p><details><summary>Cookie details</summary><p>We do not use advertising or analytics cookies. Your choice is saved on this device. Media providers may use cookies when their players load: <a href="https://bandcamp.com/privacy" target="_blank" rel="noopener noreferrer">Bandcamp</a> and <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">YouTube</a>. <a href="privacy.html">Privacy &amp; cookies</a>.</p></details></div><div class="cookie-banner-actions"><button type="button" data-choice="essential">Decline</button><button type="button" data-choice="all">Accept media cookies</button></div>`;
   document.body.append(banner);
   banner.hidden = choice === 'all' || choice === 'essential';
 
@@ -39,7 +39,7 @@
     if (selected) {
       saveChoice(selected.dataset.choice || selected.dataset.cookieChoice);
       const feedback = document.querySelector('[data-cookie-feedback]');
-      if (feedback) feedback.textContent = choice === 'all' ? 'Media cookies accepted.' : 'Essential cookies only.';
+      if (feedback) feedback.textContent = choice === 'all' ? 'Media cookies accepted.' : 'Media cookies declined.';
     }
     if (event.target.closest('[data-cookie-settings]')) banner.hidden = false;
     if (event.target.closest('[data-allow-media]')) saveChoice('all');
