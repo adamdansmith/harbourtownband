@@ -113,6 +113,23 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
   }, { threshold: .2, rootMargin: '0px 0px -25px 0px' });
   storyHeadings.forEach(heading => headingObserver.observe(heading));
 }
+const storyStops = [...document.querySelectorAll('.home-story .story-stop')];
+if (storyStops.length) {
+  let stopFrame = 0;
+  const updateStoryStops = () => {
+    stopFrame = 0;
+    storyStops.forEach(stop => {
+      const rect = stop.getBoundingClientRect();
+      stop.classList.toggle('is-passed', rect.top + rect.height / 2 <= window.innerHeight * .55);
+    });
+  };
+  const requestStoryStops = () => {
+    if (!stopFrame) stopFrame = requestAnimationFrame(updateStoryStops);
+  };
+  updateStoryStops();
+  window.addEventListener('scroll', requestStoryStops, { passive: true });
+  window.addEventListener('resize', requestStoryStops);
+}
 const innerTargets = document.querySelectorAll('.subhero-copy h1, .member-profile, .gallery-group-heading, .gallery-item, .video-item, .music-album-grid > *, .gig-poster, .contact-page-grid > *');
 const innerStops = [...document.querySelectorAll('.inner-stop')];
 if (innerStops.length) {
